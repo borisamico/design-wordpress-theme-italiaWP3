@@ -1,0 +1,1383 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2026-08-04 11:25+0200\n"
+"PO-Revision-Date: 2026-08-04 11:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: __;_e;_n_noop\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: 403.php:9
+msgid "Forbidden"
+msgstr "Accesso negato"
+
+#: 403.php:23
+msgid "You don't have permission to access this page"
+msgstr "Non disponi delle autorizzazioni per accedere a questa pagina"
+
+#: 403.php:23 404.php:23 template-parts/error.php:13
+msgid "come back"
+msgstr "torna indietro"
+
+#: 403.php:23 404.php:23 template-parts/error.php:13
+msgid "or use the menu to continue browsing"
+msgstr "o utilizza il menu per continuare la navigazione"
+
+#: 403.php:29 404.php:29 template-parts/error.php:19
+msgid "Back to Home"
+msgstr "Torna alla Home"
+
+#: 404.php:9
+msgid "Not found"
+msgstr "Pagina non trovata"
+
+#: 404.php:23
+msgid "The page you are looking for was not found"
+msgstr "La pagina che cerchi non è stata trovata"
+
+#: comments.php:10
+msgid "Comments"
+msgstr "Commenti"
+
+#: comments.php:37
+msgid "No comment"
+msgstr "Nessun commento"
+
+#: comments.php:72
+msgid "Site"
+msgstr "Sito"
+
+#: comments.php:78
+msgid ""
+"Saving a cookie with my data (name, email, website) for the next comment"
+msgstr ""
+"Salvataggio di un cookie con i miei dati (nome, email, sito web) per il "
+"prossimo commento"
+
+#: comments.php:101
+msgid "Leave a comment"
+msgstr "Lascia un commento"
+
+#: footer.php:51
+msgid "Address"
+msgstr "Indirizzo"
+
+#: footer.php:58 footer.php:59
+msgid "Phone"
+msgstr "Telefono"
+
+#: footer.php:66 footer.php:67
+msgid "Fax"
+msgstr "Fax"
+
+#: footer.php:76
+msgid "Information"
+msgstr "Informazioni"
+
+#: footer.php:80
+msgid "Tax code / VAT number"
+msgstr "C.F. / P.IVA"
+
+#: footer.php:86
+msgid "Unique Code"
+msgstr "Cod. Univoco"
+
+#: footer.php:93
+msgid "IBAN"
+msgstr "IBAN"
+
+#: footer.php:101
+msgid "Email contacts"
+msgstr "Posta Elettronica"
+
+#: footer.php:105
+msgid "PEC"
+msgstr "PEC"
+
+#: footer.php:106
+msgid "Certified mail"
+msgstr "Posta Elettronica Certificata"
+
+#: footer.php:113 footer.php:114 footer.php:122 footer.php:123
+msgid "Email"
+msgstr "Email"
+
+#: footer.php:132 footer.php:144 footer.php:156 footer.php:168 footer.php:180
+#: footer.php:192 footer.php:204 footer.php:216 menu.php:98 menu.php:107
+#: menu.php:119 menu.php:131 menu.php:143 menu.php:155 menu.php:167
+#: menu.php:179 menu.php:259 menu.php:271 menu.php:283 menu.php:295
+#: menu.php:307 menu.php:319 menu.php:331
+msgid "Follow us on"
+msgstr "Seguici su"
+
+#: footer.php:139 footer.php:151 footer.php:163 footer.php:175 footer.php:187
+#: footer.php:199 footer.php:211 menu.php:8 menu.php:102 menu.php:114
+#: menu.php:126 menu.php:138 menu.php:150 menu.php:162 menu.php:174
+#: menu.php:254 menu.php:266 menu.php:278 menu.php:290 menu.php:302
+#: menu.php:314 menu.php:326
+msgid "Link to external site"
+msgstr "Collegamento a sito esterno"
+
+#: footer.php:227
+msgid "Useful Links Section"
+msgstr "Sezione Link Utili"
+
+#: footer.php:230
+msgid "Privacy policy"
+msgstr "Privacy policy"
+
+#: footer.php:230
+msgid "Privacy"
+msgstr "Privacy"
+
+#: footer.php:233 template-parts/section-cookies.php:22
+msgid "Cookie policy"
+msgstr "Cookie policy"
+
+#: footer.php:236
+msgid "Legal notices"
+msgstr "Note legali"
+
+#: footer.php:239
+msgid "Contacts"
+msgstr "Contatti"
+
+#: footer.php:242
+msgid "Accessibility"
+msgstr "Accessibilità"
+
+#: footer.php:244
+msgid "Made with"
+msgstr "Realizzato con"
+
+#: footer.php:248
+msgid "Graphic theme"
+msgstr "Tema grafico"
+
+#: footer.php:249
+msgid "Based on the"
+msgstr "Basato sul"
+
+#: footer.php:249
+msgid "AgID Prototype for PA sites"
+msgstr "Prototipo per siti PA di AgID"
+
+#: footer.php:261
+msgid "Go up"
+msgstr "Torna su"
+
+#: functions.php:126
+msgid "Black"
+msgstr "Nero"
+
+#: functions.php:131
+msgid "White"
+msgstr "Bianco"
+
+#: functions.php:136
+msgid "Primary Color"
+msgstr "Colore Primario"
+
+#: functions.php:141
+msgid "Light Primary Color"
+msgstr "Colore Primario Chiaro"
+
+#: functions.php:146
+msgid "Dark Primary Color"
+msgstr "Colore Primario Scuro"
+
+#: functions.php:151
+msgid "Complementary Color"
+msgstr "Colore Complementare"
+
+#: functions.php:495
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:334
+msgid "Install Required Plugins"
+msgstr "Installa plugin richiesti"
+
+#: functions.php:496
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:335
+msgid "Install Plugins"
+msgstr "Installa plugin"
+
+#: functions.php:498
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:337
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr "Installazione del plugin: %s"
+
+#: functions.php:500
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:339
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr "Aggiornamento del plugin: %s"
+
+#: functions.php:501
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:340
+msgid "Something went wrong with the plugin API."
+msgstr "Qualcosa è andato storto con l’API del plugin."
+
+#: functions.php:504
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:343
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgstr "Questo tema richiede il seguente plugin: %1$s."
+
+#: functions.php:510
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:349
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgstr "Questo tema consiglia il seguente plugin: %1$s."
+
+#: functions.php:516
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:355
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr ""
+"Il seguente plugin deve essere aggiornato all’ultima versione per garantire "
+"la massima compatibilità con questo tema: %1$s."
+
+#: functions.php:522
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:361
+#, php-format
+msgid "There is an update available for: %1$s."
+msgstr "È disponibile un aggiornamento per: %1$s."
+
+#: functions.php:528
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:367
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgstr "Il seguente plugin richiesto è attualmente inattivo: %1$s."
+
+#: functions.php:534
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:373
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgstr "Il seguente plugin consigliato è attualmente inattivo: %1$s."
+
+#: functions.php:539
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:378
+msgid "Begin installing plugin"
+msgstr "Inizia installazione del plugin"
+
+#: functions.php:544
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:383
+msgid "Begin updating plugin"
+msgstr "Inizia aggiornamento del plugin"
+
+#: functions.php:549
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:388
+msgid "Begin activating plugin"
+msgstr "Inizia attivazione del plugin"
+
+#: functions.php:553
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:392
+msgid "Return to Required Plugins Installer"
+msgstr "Torna ai plugin richiesti"
+
+#: functions.php:554
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:393
+msgid "Return to the Dashboard"
+msgstr "Ritorna alla Dashboard"
+
+#: functions.php:555
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:394
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3252
+msgid "Plugin activated successfully."
+msgstr "Plugin attivato correttamente."
+
+#: functions.php:556
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:395
+msgid "The following plugin was activated successfully:"
+msgstr "Il seguente plugin è stato attivato correttamente:"
+
+#: functions.php:558
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:397
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr "Nessuna azione intrapresa. Il plugin %1$s era già attivo."
+
+#: functions.php:560
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:399
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+"Plugin non attivato. Per questo tema è necessaria una versione superiore di "
+"%s. Si prega di aggiornare il plugin."
+
+#: functions.php:562
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:401
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr "Tutti i plugin installati e attivati correttamente. %1$s"
+
+#: functions.php:563
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:402
+msgid "Dismiss this notice"
+msgstr "Rimuovi questa notifica"
+
+#: functions.php:564
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:403
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+"Esistono uno o più plugin richiesti o consigliati da installare, aggiornare "
+"o attivare."
+
+#: functions.php:565
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:404
+msgid "Please contact the administrator of this site for help."
+msgstr "Si prega di contattare l’amministratore di questo sito per assistenza."
+
+#: header.php:46
+msgid "Go to content"
+msgstr "Vai ai contenuti"
+
+#: header.php:49
+msgid "Go to the navigation menu"
+msgstr "Vai al menu di navigazione"
+
+#: header.php:51
+msgid "Go to the footer"
+msgstr "Vai al footer"
+
+#: inc/gallery.php:24
+msgid "Photo gallery"
+msgstr "Galleria fotografica"
+
+#: inc/gallery.php:24 template-parts/section-gallery-carousel.php:14
+msgid "scroll"
+msgstr "scorri"
+
+#: inc/menu-item-custom-fields/doc/menu-item-custom-fields-example.php:51
+msgid "Attributo \"data-element\" per validazione"
+msgstr ""
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2075
+#, php-format
+msgid "TGMPA v%s"
+msgstr "TGMPA v%s"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2366
+msgid "Required"
+msgstr "Richiesto"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2369
+msgid "Recommended"
+msgstr "Consigliato"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2385
+msgid "WordPress Repository"
+msgstr "Repository WordPress"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2388
+msgid "External Source"
+msgstr "Fonte esterna"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2391
+msgid "Pre-Packaged"
+msgstr "Preconfezionata"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2408
+msgid "Not Installed"
+msgstr "Non installato"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2412
+msgid "Installed But Not Activated"
+msgstr "Installato ma non attivato"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2414
+msgid "Active"
+msgstr "Attivo"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2420
+msgid "Required Update not Available"
+msgstr "Aggiornamento richiesto non disponibile"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2423
+msgid "Requires Update"
+msgstr "Richiede l’aggiornamento"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2426
+msgid "Update recommended"
+msgstr "Aggiornamento raccomandato"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2583
+msgid "Installed version:"
+msgstr "Versione installata:"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2591
+msgid "Minimum required version:"
+msgstr "Versione minima richiesta:"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2603
+msgid "Available version:"
+msgstr "Versione disponibile:"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2640
+msgid "Plugin"
+msgstr "Plugin"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2641
+msgid "Source"
+msgstr "Fonte"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2642
+msgid "Type"
+msgstr "Tipo"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2646
+msgid "Version"
+msgstr "Versione"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2647
+msgid "Status"
+msgstr "Stato"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2696
+#, php-format
+msgid "Install %2$s"
+msgstr "Installa %2$s"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2701
+#, php-format
+msgid "Update %2$s"
+msgstr "Aggiorna %2$s"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2707
+#, php-format
+msgid "Activate %2$s"
+msgstr "Attiva %2$s"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2810
+msgid "Install"
+msgstr "Installa"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2816
+msgid "Update"
+msgstr "Aggiorna"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2819
+msgid "Activate"
+msgstr "Attiva"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2850
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+"Nessun plugin selezionato per l’installazione. Nessuna azione intrapresa."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2852
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+"Nessun plugin selezionato per l’aggiornamento. Nessuna azione intrapresa."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2893
+msgid "No plugins are available to be installed at this time."
+msgstr "Nessun plugin disponibile per l’installazione in questo momento."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:2895
+msgid "No plugins are available to be updated at this time."
+msgstr "Nessun plugin disponibile per l’aggiornamento in questo momento."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3251
+msgid "Plugin activation failed."
+msgstr "Attivazione del plugin non riuscita."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3591
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr "Aggiornamento del plugin %1$s (%2$d/%3$d)"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3594
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+"Si è verificato un errore durante l’installazione %1$s: <strong>%2$s</"
+"strong>."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3596
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr "L’installazione di %1$s non è riuscita."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3600
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+"Il processo di installazione e attivazione sta iniziando. Questo processo "
+"potrebbe richiedere del tempo su alcuni host, quindi ti preghiamo di "
+"pazientare."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3602
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr "%1$s installati e attivati correttamente."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3603
+msgid "All installations and activations have been completed."
+msgstr "Tutte le installazioni e le attivazioni sono state completate."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3605
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr "Installazione e attivazione del plugin %1$s (%2$d/%3$d)"
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3608
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+"Il processo di installazione sta iniziando. Questo processo potrebbe "
+"richiedere del tempo su alcuni host, quindi ti preghiamo di pazientare."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3611
+msgid "All installations have been completed."
+msgstr "Tutte le installazioni sono state completate."
+
+#: inc/tgm-plugin-activation/class-tgm-plugin-activation.php:3613
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr "Installazione del plugin %1$s (%2$d/%3$d)"
+
+#: menu.php:8
+msgid "new window"
+msgstr "nuova finestra"
+
+#: menu.php:46
+msgid "Login"
+msgstr "Accedi"
+
+#: menu.php:60
+msgid "Toggle navigation"
+msgstr "Attiva / disattiva la navigazione"
+
+#: menu.php:76
+msgid "Main menu"
+msgstr "Menu principale"
+
+#: menu.php:362
+msgid "close"
+msgstr "chiusi"
+
+#: searchform.php:3 searchform.php:4
+msgid "Search"
+msgstr "Cerca"
+
+#: searchform_sidebar.php:2
+msgid "Search for Topics"
+msgstr "Cerca Argomenti"
+
+#: tag.php:16 template-parts/section-last-news.php:305
+msgid "Other topics"
+msgstr "Altri argomenti"
+
+#: template-parts/archive-circolari-loop.php:17
+#: template-parts/section-last-circolari.php:102
+msgid "Circulars"
+msgstr "Circolari"
+
+#: template-parts/archive-circolari-loop.php:19
+#: template-parts/archive-gallerie-loop.php:19
+#: template-parts/archive-loop.php:19 template-parts/archive-loop.php:84
+#: template-parts/main-loop.php:19 template-parts/search-loop.php:18
+msgid "Page"
+msgstr "Pagina"
+
+#: template-parts/archive-circolari-loop.php:19
+#: template-parts/archive-gallerie-loop.php:19
+#: template-parts/archive-loop.php:19 template-parts/main-loop.php:19
+#: template-parts/search-loop.php:18
+msgid "of"
+msgstr "di"
+
+#: template-parts/archive-circolari-loop.php:52
+#: template-parts/circolare-loop.php:50
+#: template-parts/section-last-circolari.php:49
+msgid "No."
+msgstr "N°"
+
+#: template-parts/archive-circolari-loop.php:52
+#: template-parts/circolare-loop.php:50
+#: template-parts/section-last-circolari.php:49
+msgid " of "
+msgstr " del "
+
+#: template-parts/archive-circolari-loop.php:72
+#: template-parts/circolare-loop.php:32
+#: template-parts/section-last-circolari.php:70
+msgid "Groups"
+msgstr "Gruppi"
+
+#: template-parts/archive-circolari-loop.php:84
+#: template-parts/archive-gallerie-loop.php:75
+#: template-parts/archive-loop.php:128 template-parts/main-loop.php:116
+#: template-parts/search-loop.php:62 template-parts/search-loop.php:68
+#: template-parts/section-gallery-carousel.php:94
+#: template-parts/section-last-circolari.php:82
+#: template-parts/section-last-circolari.php:102
+#: template-parts/section-last-news.php:137
+#: template-parts/section-last-news.php:263
+#: template-parts/section-last-news.php:323
+#: template-parts/section-last-one-news.php:86
+msgid "Go to the page"
+msgstr "Vai alla pagina"
+
+#: template-parts/archive-circolari-loop.php:85
+#: template-parts/archive-loop.php:129 template-parts/main-loop.php:117
+#: template-parts/search-loop.php:68 template-parts/search-loop.php:70
+#: template-parts/section-last-circolari.php:83
+#: template-parts/section-last-news.php:138
+#: template-parts/section-last-news.php:264
+msgid "Read more"
+msgstr "Leggi di più"
+
+#: template-parts/archive-gallerie-loop.php:76
+msgid "Browse gallery"
+msgstr "Sfoglia galleria"
+
+#: template-parts/archive-loop.php:105 template-parts/main-loop.php:93
+#: template-parts/section-last-news.php:114
+#: template-parts/section-last-news.php:240
+#: template-parts/section-last-one-news.php:61
+#: template-parts/single-loop.php:42
+msgid "Categories"
+msgstr "Categorie"
+
+#: template-parts/archive-loop.php:116 template-parts/main-loop.php:104
+#: template-parts/page-loop-nosidebar.php:33 template-parts/page-loop.php:34
+#: template-parts/section-last-news.php:125
+#: template-parts/section-last-news.php:251
+#: template-parts/section-last-one-news.php:74
+#: template-parts/single-loop.php:55
+msgid "Topics"
+msgstr "Argomenti"
+
+#: template-parts/attachment-loop.php:54 template-parts/circolare-loop.php:98
+#: template-parts/custom-post-type-loop.php:60 template-parts/page-loop.php:88
+#: template-parts/single-loop.php:115
+msgid "Last update"
+msgstr "Ultimo aggiornamento"
+
+#: template-parts/attachments-sidebar.php:20 template-parts/attachments.php:23
+msgid "Attachments"
+msgstr "Allegati"
+
+#: template-parts/children-list.php:19
+msgid "Back"
+msgstr "Indietro"
+
+#: template-parts/children-list.php:25
+msgid "Linked pages"
+msgstr "Pagine collegate"
+
+#: template-parts/circolare-loop.php:49
+msgid "Circular"
+msgstr "Circolare"
+
+#: template-parts/circolare-loop.php:56 template-parts/single-loop.php:72
+msgid "Date"
+msgstr "Data"
+
+#: template-parts/circolare-loop.php:62
+msgid "Author"
+msgstr "Autore"
+
+#: template-parts/error.php:12
+msgid "Error"
+msgstr "Errore"
+
+#: template-parts/error.php:13
+msgid "There is no content"
+msgstr "Nessun contenuto presente"
+
+#: template-parts/main-loop.php:17
+msgid "Last news"
+msgstr "Ultime notizie"
+
+#: template-parts/navigation.php:12 template-parts/pagination.php:13
+msgid "Browsing the news"
+msgstr "Navigazione tra le notizie"
+
+#: template-parts/navigation.php:20 template-parts/navigation.php:27
+#: template-parts/pagination.php:19
+msgid "Previous page"
+msgstr "Pagina precedente"
+
+#: template-parts/navigation.php:38 template-parts/navigation.php:45
+#: template-parts/pagination.php:43
+msgid "Next page"
+msgstr "Pagina successiva"
+
+#: template-parts/search-loop.php:16
+msgid "Results for"
+msgstr "Risultati per"
+
+#: template-parts/search-loop.php:34
+msgid "results found"
+msgstr "risultati trovati"
+
+#: template-parts/section-cookies.php:17
+msgid "This site uses technical, analytics and third-party cookies"
+msgstr "Questo sito utilizza cookie tecnici, analytics e di terze parti"
+
+#: template-parts/section-cookies.php:18
+msgid "By continuing to browse, you accept the use of cookies"
+msgstr "Proseguendo nella navigazione accetti l’utilizzo dei cookie"
+
+#: template-parts/section-cookies.php:20
+msgid "I accept"
+msgstr "Accetto"
+
+#: template-parts/section-gallery-carousel.php:14
+msgid "Photo galleries"
+msgstr "Gallerie fotografiche"
+
+#: template-parts/section-gallery-carousel.php:94
+msgid "Galleries"
+msgstr "Gallerie"
+
+#: template-parts/section-gallery-carousel.php:95
+msgid "All galleries"
+msgstr "Tutte le gallerie"
+
+#: template-parts/section-last-circolari.php:15
+msgid "Latest circulars"
+msgstr "Ultime circolari"
+
+#: template-parts/section-last-circolari.php:103
+#: template-parts/section-last-news.php:324
+msgid "See all"
+msgstr "Vedi tutte"
+
+#: template-parts/section-last-news.php:284
+msgid "Other categories"
+msgstr "Altre categorie"
+
+#: template-parts/section-last-news.php:323
+msgid "News"
+msgstr "Notizie"
+
+#: template-parts/section-last-one-news.php:86
+#: template-parts/section-last-one-news.php:87
+msgid "All the news"
+msgstr "Tutte le novità"
+
+#: template-parts/section-map.php:15 template-parts/section-map.php:35
+msgid "Interactive Map"
+msgstr "Mappa Interattiva"
+
+#: template-parts/section-map.php:16
+msgid "Click on to activate"
+msgstr "Clicca su per attivare"
+
+#: template-parts/section-services.php:16
+msgid "Services"
+msgstr "Servizi"
+
+
+#: comments.php
+msgid "Reply"
+msgstr "Rispondi"
+
+#: comments.php
+msgid "Comments navigation"
+msgstr "Navigazione dei commenti"
+
+#: comments.php
+msgid "Your comment is awaiting moderation."
+msgstr "Il tuo commento è in attesa di moderazione."
+
+#: comments.php
+msgid "Fields marked with an asterisk are required"
+msgstr "I campi contrassegnati con un asterisco sono obbligatori"
+#: inc/accessibilita/
+msgid "What this page can and cannot tell you"
+msgstr "Che cosa questa pagina può dirti, e che cosa no"
+
+#: inc/accessibilita/
+msgid "Automatic checks catch roughly one third of accessibility problems. The other two thirds — keyboard navigation and screen reader use — cannot be measured by any tool, this one included. They are listed further down as manual checks and have to be done by a person."
+msgstr "I controlli automatici intercettano circa un terzo dei problemi di accessibilità. Gli altri due terzi — navigazione da tastiera e uso di uno screen reader — non sono misurabili da nessuno strumento, questo compreso. Sono elencati più sotto come verifiche manuali e vanno fatti da una persona."
+
+#: inc/accessibilita/
+msgid "An empty report here does not mean the site is compliant. The accessibility statement published on %s stays the responsibility of the public body, and has to be renewed every year."
+msgstr "Un rapporto vuoto qui non significa che il sito sia conforme. La dichiarazione di accessibilità pubblicata su %s resta responsabilità dell'ente e va rinnovata ogni anno."
+
+#: inc/accessibilita/
+msgid "Summary"
+msgstr "Riepilogo"
+
+#: inc/accessibilita/
+msgid "Errors found in the markup"
+msgstr "Errori nel markup"
+
+#: inc/accessibilita/
+msgid "Warnings"
+msgstr "Avvisi"
+
+#: inc/accessibilita/
+msgid "Findings in the content"
+msgstr "Rilievi nei contenuti"
+
+#: inc/accessibilita/
+msgid "Manual checks done"
+msgstr "Verifiche manuali fatte"
+
+#: inc/accessibilita/
+msgid "worth a look, not necessarily a failure"
+msgstr "da guardare, non per forza un fallimento"
+
+#: inc/accessibilita/
+msgid "images, tables, headings, PDFs"
+msgstr "immagini, tabelle, titoli, PDF"
+
+#: inc/accessibilita/
+msgid "the part no tool can measure"
+msgstr "la parte che nessuno strumento misura"
+
+#: inc/accessibilita/
+msgid "1. Markup of the public pages"
+msgstr "1. Markup delle pagine pubbliche"
+
+#: inc/accessibilita/
+msgid "The pages are fetched from the site itself, logged out, and their markup is inspected: language, heading structure, alt text, labels, duplicate ids, aria references, tables, icons."
+msgstr "Le pagine vengono scaricate dal sito stesso, da sloggati, e se ne ispeziona il markup: lingua, gerarchia dei titoli, testi alternativi, label, id duplicati, riferimenti aria, tabelle, icone."
+
+#: inc/accessibilita/
+msgid "Run the markup check"
+msgstr "Avvia il controllo del markup"
+
+#: inc/accessibilita/
+msgid "Never run yet."
+msgstr "Mai eseguito."
+
+#: inc/accessibilita/
+msgid "Never run yet, or nothing found."
+msgstr "Mai eseguito, oppure nessun rilievo."
+
+#: inc/accessibilita/
+msgid "Last run: %s"
+msgstr "Ultima esecuzione: %s"
+
+#: inc/accessibilita/
+msgid "Page not readable: %s"
+msgstr "Pagina non leggibile: %s"
+
+#: inc/accessibilita/
+msgid "No problem found by the automatic checks on this page."
+msgstr "Nessun problema rilevato dai controlli automatici su questa pagina."
+
+#: inc/accessibilita/
+msgid "Severity"
+msgstr "Gravità"
+
+#: inc/accessibilita/
+msgid "Finding"
+msgstr "Rilievo"
+
+#: inc/accessibilita/
+msgid "Warning"
+msgstr "Avviso"
+
+#: inc/accessibilita/
+msgid "…and %d more."
+msgstr "…e altri %d."
+
+#: inc/accessibilita/
+msgid "…and %d more findings, not shown here."
+msgstr "…e altri %d rilievi, non mostrati qui."
+
+#: inc/accessibilita/
+msgid "2. Contrast, focus and reflow on the rendered page"
+msgstr "2. Contrasto, focus e reflow sulla pagina resa"
+
+#: inc/accessibilita/
+msgid "These depend on the computed styles, which PHP cannot see. The pages are loaded in a frame on this same site and measured directly in the browser: real contrast ratios, focus outline width and contrast, and horizontal scrolling at 320px. Nothing leaves the site."
+msgstr "Dipendono dagli stili calcolati, che il PHP non vede. Le pagine si caricano in un frame sullo stesso sito e si misurano nel browser: rapporti di contrasto reali, contorni di focus azzerati senza sostituto, scorrimento orizzontale a 320px. Nulla esce dal sito."
+
+#: inc/accessibilita/
+msgid "Run the rendered check"
+msgstr "Avvia il controllo sulla resa"
+
+#: inc/accessibilita/
+msgid "Contrast"
+msgstr "Contrasto"
+
+#: inc/accessibilita/
+msgid "Focus"
+msgstr "Focus"
+
+#: inc/accessibilita/
+msgid "Reflow at 320px"
+msgstr "Reflow a 320px"
+
+#: inc/accessibilita/
+msgid "3. Content, images and PDFs"
+msgstr "3. Contenuti, immagini e PDF"
+
+#: inc/accessibilita/
+msgid "This is the part that lives in the content, not in the theme, and it is the one most often forgotten. The whole database is scanned in batches."
+msgstr "È la parte che sta nei contenuti, non nel tema, ed è quella che si dimentica più spesso. L'intero database viene scandito a lotti."
+
+#: inc/accessibilita/
+msgid "Scan the content"
+msgstr "Scandisci i contenuti"
+
+#: inc/accessibilita/
+msgid "Content"
+msgstr "Contenuto"
+
+#: inc/accessibilita/
+msgid "4. Manual checks"
+msgstr "4. Verifiche manuali"
+
+#: inc/accessibilita/
+msgid "No tool can do these. Record who checked what and when: this is the evidence the accessibility statement rests on."
+msgstr "Nessuno strumento può farle. Registra chi ha verificato cosa e quando: è la prova su cui si fonda la dichiarazione di accessibilità."
+
+#: inc/accessibilita/
+msgid "What to check"
+msgstr "Cosa verificare"
+
+#: inc/accessibilita/
+msgid "Outcome"
+msgstr "Esito"
+
+#: inc/accessibilita/
+msgid "Notes"
+msgstr "Note"
+
+#: inc/accessibilita/
+msgid "Checked on"
+msgstr "Verificato il"
+
+#: inc/accessibilita/
+msgid "Not checked"
+msgstr "Non verificato"
+
+#: inc/accessibilita/
+msgid "Compliant"
+msgstr "Conforme"
+
+#: inc/accessibilita/
+msgid "Not compliant"
+msgstr "Non conforme"
+
+#: inc/accessibilita/
+msgid "Not applicable"
+msgstr "Non applicabile"
+
+#: inc/accessibilita/
+msgid "Keyboard navigation"
+msgstr "Navigazione da tastiera"
+
+#: inc/accessibilita/
+msgid "Screen reader"
+msgstr "Screen reader"
+
+#: inc/accessibilita/
+msgid "Media and documents"
+msgstr "Media e documenti"
+
+#: inc/accessibilita/
+msgid "5. Sample of pages"
+msgstr "5. Campione di pagine"
+
+#: inc/accessibilita/
+msgid "The AgID methodology asks for at least one page per template. These are the ones the theme itself distinguishes; add any layout your site introduces, one URL per line."
+msgstr "La metodologia AgID chiede almeno una pagina per ogni template. Queste sono quelle che il tema distingue; aggiungi i layout introdotti dal tuo sito, un URL per riga."
+
+#: inc/accessibilita/
+msgid "Save the sample"
+msgstr "Salva il campione"
+
+#: inc/accessibilita/
+msgid "Only URLs on this site are accepted."
+msgstr "Sono accettati solo URL di questo sito."
+
+#: inc/accessibilita/
+msgid "6. Bootstrap Italia"
+msgstr "6. Bootstrap Italia"
+
+#: inc/accessibilita/
+msgid "Aligned"
+msgstr "Allineate"
+
+#: inc/accessibilita/
+msgid "yes"
+msgstr "sì"
+
+#: inc/accessibilita/
+msgid "no — the cache buster is out of step with the assets"
+msgstr "no — il cache buster è disallineato dagli asset"
+
+#: inc/accessibilita/
+msgid "Latest release published"
+msgstr "Ultima release pubblicata"
+
+#: inc/accessibilita/
+msgid "could not be checked"
+msgstr "non verificabile"
+
+#: inc/accessibilita/
+msgid "not found"
+msgstr "non trovata"
+
+#: inc/accessibilita/
+msgid "Read only, on purpose. The Bootstrap Italia assets travel inside the theme releases: the way to update them is to update the theme, which does it by itself. Downloading and overwriting files from here would need a writable theme folder, would run remote code without a checksum, and would be overwritten at the next theme update anyway."
+msgstr "Sola lettura, di proposito. Gli asset di Bootstrap Italia viaggiano dentro le release del tema: il modo di aggiornarli è aggiornare il tema, che lo fa da sé. Scaricare e sovrascrivere file da qui richiederebbe una cartella del tema scrivibile, eseguirebbe codice remoto senza verifica di checksum, e verrebbe comunque sovrascritto al primo aggiornamento."
+
+#: inc/accessibilita/
+msgid "Starting…"
+msgstr "Avvio…"
+
+#: inc/accessibilita/
+msgid "no problems found"
+msgstr "nessun problema"
+
+#: inc/accessibilita/
+msgid "Check completed."
+msgstr "Controllo completato."
+
+#: inc/accessibilita/
+msgid "The page could not be loaded in the frame."
+msgstr "Impossibile caricare la pagina nel frame."
+
+#: inc/accessibilita/
+msgid "Not allowed."
+msgstr "Non autorizzato."
+
+#: inc/accessibilita/
+msgid "Malformed results."
+msgstr "Risultati malformati."
+
+#: inc/accessibilita/
+msgid "Unknown item."
+msgstr "Voce sconosciuta."
+
+#: inc/accessibilita/
+msgid "the server answered with HTTP %d"
+msgstr "il server ha risposto con HTTP %d"
+
+#: inc/accessibilita/
+msgid "empty response"
+msgstr "risposta vuota"
+
+#: inc/accessibilita/
+msgid "municipality"
+msgstr "comune"
+
+#: inc/accessibilita/
+msgid "ARIA attributes referencing ids that do not exist in the page: the relationship is simply lost."
+msgstr "Attributi ARIA che puntano a id inesistenti nella pagina: la relazione va semplicemente perduta."
+
+#: inc/accessibilita/
+msgid "At 200% zoom nothing is lost and nothing overlaps."
+msgstr "Allo zoom del 200% non si perde nulla e niente si sovrappone."
+
+#: inc/accessibilita/
+msgid "Data tables with no <th>: a screen reader cannot tie each cell to its column or row. Usually these come from the editor, not from the theme."
+msgstr "Tabelle di dati senza <th>: uno screen reader non può legare ogni cella alla sua colonna o riga. Di solito arrivano dall'editor, non dal tema."
+
+#: inc/accessibilita/
+msgid "Dialogs are announced as such, take the focus and give it back when closed."
+msgstr "Le finestre di dialogo sono annunciate come tali, prendono il focus e lo restituiscono alla chiusura."
+
+#: inc/accessibilita/
+msgid "Duplicate id attributes: label associations and aria references point to the wrong element."
+msgstr "Attributi id duplicati: le associazioni delle label e i riferimenti aria puntano all'elemento sbagliato."
+
+#: inc/accessibilita/
+msgid "Everything that works with the mouse also works with the keyboard, including carousels, lightboxes and maps."
+msgstr "Tutto ciò che funziona col mouse funziona anche da tastiera, caroselli, lightbox e mappe compresi."
+
+#: inc/accessibilita/
+msgid "Form fields with no associated label: they are announced without saying what to type in."
+msgstr "Campi di form senza label associata: vengono annunciati senza dire cosa scriverci dentro."
+
+#: inc/accessibilita/
+msgid "Form validation errors are announced, not just shown in red."
+msgstr "Gli errori di validazione dei form vengono annunciati, non solo mostrati in rosso."
+
+#: inc/accessibilita/
+msgid "Frames without a title: a screen reader announces them as \"frame\" with no clue about the content."
+msgstr "Frame senza title: uno screen reader li annuncia come \"frame\" senza dire cosa contengono."
+
+#: inc/accessibilita/
+msgid "Image in the library with no alternative text. If it is decorative it is fine; if it carries information, it must be described."
+msgstr "Immagine in libreria senza testo alternativo. Se è decorativa va bene così; se porta un'informazione, va descritta."
+
+#: inc/accessibilita/
+msgid "Images without an alt attribute. A decorative image needs alt=\"\" (empty); an informative one needs a description."
+msgstr "Immagini senza attributo alt. Un'immagine decorativa vuole alt=\"\" (vuoto); una informativa vuole una descrizione."
+
+#: inc/accessibilita/
+msgid "Links or buttons with no accessible name: they are announced as \"link\" and nothing else."
+msgstr "Link o pulsanti senza nome accessibile: vengono annunciati come \"link\" e nient'altro."
+
+#: inc/accessibilita/
+msgid "Links whose text does not say where they lead. Read out of context — as a screen reader user listing the links does — they mean nothing. An aria-label with the destination title is enough."
+msgstr "Link il cui testo non dice dove portano. Letti fuori contesto — come fa chi si fa elencare i link dallo screen reader — non significano nulla. Basta un aria-label con il titolo della destinazione."
+
+#: inc/accessibilita/
+msgid "Menus and accordions announce their open/closed state, and it changes when they are operated."
+msgstr "Menu e fisarmoniche annunciano lo stato aperto/chiuso, e lo stato cambia quando li si aziona."
+
+#: inc/accessibilita/
+msgid "NVDA, VoiceOver or JAWS. Listen to the page with your eyes closed and check that the experience holds together."
+msgstr "NVDA, VoiceOver o JAWS. Ascolta la pagina a occhi chiusi e verifica che l'esperienza stia in piedi."
+
+#: inc/accessibilita/
+msgid "No keyboard trap: every menu, dialog and player can be left with the keyboard alone."
+msgstr "Nessuna trappola per il focus: da ogni menu, finestra e lettore si esce con la sola tastiera."
+
+#: inc/accessibilita/
+msgid "PDF that looks like a scan: no text, only images. It cannot be read, searched or enlarged."
+msgstr "PDF che sembra una scansione: nessun testo, solo immagini. Non si può leggere, cercare né ingrandire."
+
+#: inc/accessibilita/
+msgid "PDF too large to be inspected here: check it with PAC or Acrobat Pro."
+msgstr "PDF troppo grande per essere esaminato qui: va controllato con PAC o Acrobat Pro."
+
+#: inc/accessibilita/
+msgid "PDF with no declared language."
+msgstr "PDF senza lingua dichiarata."
+
+#: inc/accessibilita/
+msgid "PDF with no document title in its properties."
+msgstr "PDF senza titolo del documento nelle proprietà."
+
+#: inc/accessibilita/
+msgid "PDF with no structure tags: headings, lists and reading order do not exist for a screen reader."
+msgstr "PDF senza tag di struttura: titoli, elenchi e ordine di lettura non esistono per uno screen reader."
+
+#: inc/accessibilita/
+msgid "Put the mouse away. Go through the whole page using only Tab, Shift+Tab, Enter and the arrow keys."
+msgstr "Metti via il mouse. Percorri tutta la pagina usando solo Tab, Maiusc+Tab, Invio e le frecce."
+
+#: inc/accessibilita/
+msgid "SPID/CIE login, pagoPA payments and any plugin forms have been tested separately: they are not part of the theme."
+msgstr "Accesso SPID/CIE, pagamenti pagoPA e i form dei plugin sono stati provati a parte: non fanno parte del tema."
+
+#: inc/accessibilita/
+msgid "SVG icons exposed to assistive technology without a name: a decorative icon needs aria-hidden=\"true\" focusable=\"false\"."
+msgstr "Icone SVG esposte alle tecnologie assistive senza un nome: un'icona decorativa vuole aria-hidden=\"true\" focusable=\"false\"."
+
+#: inc/accessibilita/
+msgid "The <html> element has no lang attribute: screen readers cannot choose the right pronunciation."
+msgstr "L'elemento <html> non ha l'attributo lang: gli screen reader non possono scegliere la pronuncia giusta."
+
+#: inc/accessibilita/
+msgid "The alternative texts say something useful: not \"image\", but what the image shows or does."
+msgstr "I testi alternativi dicono qualcosa di utile: non \"immagine\", ma cosa mostra o cosa fa quell'immagine."
+
+#: inc/accessibilita/
+msgid "The content contains an <h1>. The page title is already the h1: use <h2> for sections inside the text."
+msgstr "Il contenuto contiene un <h1>. Il titolo della pagina è già l'h1: per le sezioni dentro al testo si usa <h2>."
+
+#: inc/accessibilita/
+msgid "The focus indicator is always clearly visible, on every background, including over images and coloured areas."
+msgstr "L'indicatore di focus è sempre ben visibile, su ogni sfondo, comprese le immagini e le aree colorate."
+
+#: inc/accessibilita/
+msgid "The heading hierarchy skips levels: the outline of the page becomes wrong for anyone browsing by headings."
+msgstr "La gerarchia dei titoli salta dei livelli: la struttura della pagina risulta sbagliata a chi naviga per titoli."
+
+#: inc/accessibilita/
+msgid "The page could not be parsed (DOMDocument unavailable or malformed markup)."
+msgstr "Non è stato possibile analizzare la pagina (DOMDocument non disponibile, o markup malformato)."
+
+#: inc/accessibilita/
+msgid "The page has %d <h1> elements: there must be exactly one, and it is the content title."
+msgstr "La pagina ha %d elementi <h1>: deve essercene esattamente uno, ed è il titolo del contenuto."
+
+#: inc/accessibilita/
+msgid "The page has no <h1>: the main content has no title."
+msgstr "La pagina non ha un <h1>: il contenuto principale è senza titolo."
+
+#: inc/accessibilita/
+msgid "The published PDFs have been checked with PAC or Acrobat Pro, not only with the automatic scan on this page."
+msgstr "I PDF pubblicati sono stati verificati con PAC o Acrobat Pro, non solo con la scansione automatica di questa pagina."
+
+#: inc/accessibilita/
+msgid "The reading order makes sense: the page can be understood without seeing it."
+msgstr "L'ordine di lettura ha senso: la pagina si capisce senza vederla."
+
+#: inc/accessibilita/
+msgid "The skip links appear on the first Tab and actually move the focus where they promise."
+msgstr "Gli skiplink compaiono al primo Tab e spostano davvero il focus dove promettono."
+
+#: inc/accessibilita/
+msgid "The tab order follows the visual reading order, with no jumps backwards."
+msgstr "L'ordine di tabulazione segue l'ordine visivo di lettura, senza salti all'indietro."
+
+#: inc/accessibilita/
+msgid "These live in the content, not in the theme, and they are the part most often forgotten."
+msgstr "Stanno nei contenuti, non nel tema, e sono la parte che si dimentica più spesso."
+
+#: inc/accessibilita/
+msgid "Videos have captions; audio content has a transcript."
+msgstr "I video hanno i sottotitoli; i contenuti audio hanno una trascrizione."
+
+#: inc/accessibilita/
+msgid "WCAG"
+msgstr "WCAG"
+
+#: inc/accessibilita/
+msgid "%d image in the content has no alt attribute."
+msgid_plural "%d images in the content have no alt attribute."
+msgstr[0] "%d immagine nel contenuto è senza attributo alt."
+msgstr[1] "%d immagini nel contenuto sono senza attributo alt."
+
+#: inc/accessibilita/
+msgid "%d data table has no header cells (<th>)."
+msgid_plural "%d data tables have no header cells (<th>)."
+msgstr[0] "%d tabella di dati è senza celle di intestazione (<th>)."
+msgstr[1] "%d tabelle di dati sono senza celle di intestazione (<th>)."
+
+#: inc/accessibilita/
+msgid "%d link whose text does not say where it leads."
+msgid_plural "%d links whose text does not say where they lead."
+msgstr[0] "%d link il cui testo non dice dove porta."
+msgstr[1] "%d link il cui testo non dice dove portano."
+
+#: inc/accessibilita/
+msgid "on %d page examined"
+msgid_plural "on %d pages examined"
+msgstr[0] "su %d pagina esaminata"
+msgstr[1] "su %d pagine esaminate"
+
+#: inc/accessibilita/
+msgid "%d not compliant"
+msgid_plural "%d not compliant"
+msgstr[0] "%d non conforme"
+msgstr[1] "%d non conformi"
+
+#~ msgid "Plugins required by the theme \"ItaliaWP\""
+#~ msgstr "Plugin richiesti dal tema “ItaliaWP”"
+
+#~ msgid "Plugins required"
+#~ msgstr "Plugin richiesti"
+
+#, php-format
+#~ msgid "\"ItaliaWP\" theme requires plugins %1$s."
+#~ msgstr "“ItaliaWP” richiede i plugin: %1$s."
+
+#, php-format
+#~ msgid "\"ItaliaWP\" recommends plugins: %1$s."
+#~ msgstr "“ItaliaWP” raccomanda i plugin: %1$s."
+
+#, php-format
+#~ msgid ""
+#~ "The following plugins must be updated to the latest version to have "
+#~ "maximum compatibility with this theme: %1$s."
+#~ msgstr ""
+#~ "I seguenti plugin devono essere aggiornati all\\’ultima versione per "
+#~ "avere massima compatibilità con questo tema: %1$s."
+
+#, php-format
+#~ msgid "There are updates available for: %1$s."
+#~ msgstr "Ci sono aggiornamenti disponibili per: %1$s."
+
+#, php-format
+#~ msgid "Required plugins are not active: %1$s."
+#~ msgstr "I plugin richiesti non sono attivi: %1$s."
+
+#, php-format
+#~ msgid "Recommended plugins are not active: %1$s."
+#~ msgstr "I plugin raccomandati non sono attivi: %1$s."
+
+#~ msgid "Update Plugins"
+#~ msgstr "Aggiorna plugin"
+
+#~ msgid "Activate plugins"
+#~ msgstr "Attiva i plugin"
+
+#~ msgid "show"
+#~ msgstr "mostra"
+
+#~ msgid "hide"
+#~ msgstr "nascondi"
+
+#~ msgid "toggle"
+#~ msgstr "Mostra / Nascondi"
+
+#~ msgid "Name"
+#~ msgstr "Nome"
+
+#~ msgid "I give my consent"
+#~ msgstr "Do il mio consenso"
+
+#~ msgid "Comment"
+#~ msgstr "Commento"
+
+#~ msgid "Error 404"
+#~ msgstr "Errore 404"
+
+#~ msgid "Add to Menu"
+#~ msgstr "Aggiungi al menu"
+
+#~ msgid "January"
+#~ msgstr "Gennaio"
+
+#~ msgid "February"
+#~ msgstr "Febbraio"
+
+#~ msgid "March"
+#~ msgstr "Marzo"
+
+#~ msgid "April"
+#~ msgstr "Aprile"
+
+#~ msgid "May"
+#~ msgstr "Maggio"
+
+#~ msgid "June"
+#~ msgstr "Giugno"
+
+#~ msgid "July"
+#~ msgstr "Luglio"
+
+#~ msgid "August"
+#~ msgstr "Agosto"
+
+#~ msgid "September"
+#~ msgstr "Settembre"
+
+#~ msgid "October"
+#~ msgstr "Ottobre"
+
+#~ msgid "November"
+#~ msgstr "Novembre"
+
+#~ msgid "December"
+#~ msgstr "Dicembre"
+
+#~ msgid "Start the search"
+#~ msgstr "Avvia la ricerca"
+
+#, fuzzy
+#~| msgid "Install Plugins"
+#~ msgid "Installa il plugin"
+#~ msgstr "Installa plugin"
+
+#, php-format
+#~ msgid "Plugin Installation: %s"
+#~ msgstr "Installazione del Plugin: %s"
+
+#, php-format
+#~ msgid "Plugin Update: %s"
+#~ msgstr "Aggiornamento del Plugin: %s"

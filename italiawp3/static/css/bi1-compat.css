@@ -1,0 +1,962 @@
+/*
+ * bi1-compat.css — compatibilita' con la resa di bootstrap-italia 1.6.4
+ * ---------------------------------------------------------------------
+ *
+ * Il tema e' passato a bootstrap-italia 2.18.3 (Bootstrap 5) con il vincolo di non
+ * cambiare nulla, ne' graficamente ne' funzionalmente. La 2.x pero' cambia griglia,
+ * tipografia e alcuni componenti: questo foglio ripristina le metriche della 1.6.4,
+ * cosi' che i ~380 !important di tema/interne/sezioni/home/adjustments — scritti
+ * contro l'output della 1.x — restino validi per costruzione.
+ *
+ * POSIZIONE NELLA CASCATA: accodato in inc/enqueue.php subito dopo
+ * italiawp3-bootstrap-italia.min e PRIMA di tutti i fogli del tema. Non spostarlo.
+ *
+ * REGOLA D'ORO: qui dentro NON si usa !important. Questo foglio deve vincere su
+ * bootstrap-italia per posizione, non per peso; se usasse !important scavalcherebbe
+ * anche i fogli del tema che vengono dopo, invertendo la gerarchia esistente.
+ * Unica eccezione ammessa: gli alias di classi che in v2 hanno un equivalente gia'
+ * dichiarato !important (.sr-only -> .visually-hidden).
+ *
+ * Ogni blocco e' stato introdotto e misurato singolarmente con il diff pixel:
+ * se un blocco non riduceva il numero di pixel diversi, non e' entrato.
+ */
+
+/* B1 — Gutter della griglia.
+   1.6.4: .row{margin:0 -6px} e .row>*{padding:0 6px}, cioe' gutter 12px.
+   2.x:   griglia variable-driven con --bs-gutter-x: 24px.
+   Riportando la sola custom property si ottiene esattamente la metrica 1.x,
+   senza toccare nessuna regola. */
+.row,
+.container,
+.container-fluid,
+.container-sm,
+.container-md,
+.container-lg,
+.container-xl,
+.container-xxl {
+  --bs-gutter-x: 12px;
+}
+
+/* B2 — Root tipografica. E' il blocco cardine: quasi tutto il resto ne discende.
+
+   Il fatto da cui dipende tutto: in 1.6.4 la ROOT E' RESPONSIVE.
+       html{font-size:16px;line-height:1.5}                        (base)
+       @media(min-width:576px) html{font-size:18px;line-height:1.555}
+   Nella 2.x invece non esiste alcuna regola su html: la root resta 16px a ogni
+   larghezza. Da qui l'apparente incoerenza della 2.x rispetto ai rem, che in realta'
+   non e' tale:
+    - i valori RISCRITTI per la 2.x (spaziature, titoli, p, small, badge) sono
+      calcolati su 16px e coincidono gia' con la 1.x sotto i 576px;
+    - i valori CONSERVATI dalla 1.x (controlli di form, callout) erano calcolati sulla
+      root da 18px e sopra i 576px risultano il 12,5% piu' piccoli.
+
+   Si NON tocca html{font-size} — cambiarla sfaserebbe i valori riscritti — e si
+   introduce invece --bi1-rem: la root della 1.6.4, con la stessa soglia responsive.
+   Ogni valore ereditato dalla 1.x si riscrive allora una volta sola, e vale a
+   entrambe le larghezze: 2.666rem@18px diventa calc(2.666 * var(--bi1-rem)). */
+:root {
+  --bi1-rem: 1rem; /* root della 1.6.4 sotto i 576px: 16px */
+
+  --bs-body-font-size: var(--bi1-rem);
+  --bs-body-line-height: 1.5;
+  --bs-body-font-weight: 300;
+  --bs-body-color: #19191a;
+  --bs-body-color-rgb: 25, 25, 26;
+  --bs-body-text-align: left; /* 1.6.4 dichiarava left; 2.x usa start (identico in LTR) */
+}
+
+@media (min-width: 576px) {
+  :root {
+    --bi1-rem: 1.125rem; /* root della 1.6.4 da 576px in su: 18px */
+
+    --bs-body-line-height: 1.555;
+  }
+}
+
+/* B2b — testo di blocco: p, ul, ol, dl.
+   La 2.x introduce una regola generica che la 1.6.4 NON aveva:
+     p,ul,ol,dl{font-size:1rem;line-height:1.5rem}   e a >=576px 1.125rem/1.75rem.
+   Avendo specificita' di tipo (0,0,1) sovrascrive l'EREDITARIETA' ovunque, anche dove
+   il contenitore aveva gia' deciso la dimensione: misurato su <p> dentro <small>
+   (didascalie del carosello, 16px -> 18px) e dentro i widget di notifica (14px -> 18px).
+   In 1.6.4 questi elementi ereditavano e basta: si ripristina l'ereditarieta'. */
+p,
+ul,
+ol,
+dl {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* small: anche qui la 1.6.4 ha due livelli (.9375rem sotto i 576px, .8888rem sopra,
+   sempre con font-weight 400); la 2.x usa .875rem fissi e il peso ereditato dal body. */
+small,
+.small {
+  font-size: calc(0.9375 * var(--bi1-rem));
+  font-weight: 400;
+}
+
+@media (min-width: 576px) {
+  small,
+  .small {
+    font-size: calc(0.8888 * var(--bi1-rem));
+  }
+}
+
+/* Rientro delle liste: ol,ul{padding-left:2rem} e' nuovo in 2.x. La 1.6.4 non
+   dichiarava nulla e lasciava il valore predefinito del browser, 40px. */
+ol,
+ul {
+  padding-left: 40px;
+}
+
+/* B2c — didascalie. La 2.x aggiunge caption,figcaption{font-size:.875rem;line-height:1rem},
+   assente in 1.6.4, dove ereditavano dal contenitore. */
+caption,
+figcaption {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* B2d — titoli.
+   La 1.6.4 ha due livelli, come la 2.x, ma con lo stesso breakpoint (576px) e valori
+   diversi; la 2.x aggiunge inoltre font-size fluide (RFS, calc(... + ...vw)) sotto i
+   1200px, che la 1.6.4 non aveva. Qui si riscrivono entrambi i livelli della 1.x:
+   sotto i 576px i numeri coincidono con quelli della 2.x (stessa root da 16px), sopra
+   cambiano perche' la root della 1.x saliva a 18px — ed e' esattamente cio' che
+   --bi1-rem porta con se', per cui una sola scrittura vale a entrambe le larghezze.
+   Restano da correggere a ogni larghezza peso, interlinea e spaziatura:
+     comune   font-weight 700 -> 500
+     h4/h5/h6 la 2.x impone font-weight 600
+     h5       1.6.4 lo vuole a 400 */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  margin-bottom: 8px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: normal;
+}
+
+h1, .h1 {
+  font-size: calc(2.5 * var(--bi1-rem));
+}
+
+h2, .h2 {
+  font-size: calc(2 * var(--bi1-rem));
+}
+
+h3, .h3 {
+  font-size: calc(1.75 * var(--bi1-rem));
+}
+
+h4, .h4 {
+  font-size: calc(1.5 * var(--bi1-rem));
+  font-weight: 600;
+}
+
+h5, .h5 {
+  font-size: calc(1.25 * var(--bi1-rem));
+  font-weight: 400;
+}
+
+h6, .h6 {
+  font-size: var(--bi1-rem);
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+@media (min-width: 576px) {
+  h1, .h1 {
+    font-size: calc(2.666 * var(--bi1-rem));
+    line-height: 1.25;
+    letter-spacing: -1.2px;
+  }
+
+  h2, .h2 {
+    font-size: calc(2.222 * var(--bi1-rem));
+    line-height: 1.2;
+  }
+
+  h3, .h3 {
+    font-size: calc(1.777 * var(--bi1-rem));
+    line-height: 1.25;
+  }
+
+  h4, .h4 {
+    font-size: calc(1.555 * var(--bi1-rem));
+    line-height: 1.428;
+  }
+
+  h5, .h5 {
+    font-size: calc(1.333 * var(--bi1-rem));
+  }
+}
+
+/* B3 — position:relative sulle colonne della griglia.
+   In Bootstrap 4 ogni .col-* nasceva position:relative; in Bootstrap 5 e' static.
+   Non e' un dettaglio estetico: cambia il containing block di tutti i figli
+   position:absolute. Caso concreto misurato — il logo dell'amministrazione afferente
+   (menu.php:17), che inc/adjustments.css:711 dimensiona con height:100%+position:absolute,
+   passava da 157x40 (relativo alla colonna .entesup) a 880x224 (relativo a #mainheader),
+   debordando su tutta l'intestazione. Stesso effetto su .box-servizi in home. */
+.col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6,
+.col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto,
+.col-sm, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6,
+.col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-auto,
+.col-md, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
+.col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md-auto,
+.col-lg, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6,
+.col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-auto,
+.col-xl, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6,
+.col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-auto {
+  position: relative;
+}
+
+/* B5a — .sr-only, rimossa in v2 a favore di .visually-hidden.
+   E' il singolo delta piu' grosso: senza, gli skiplink di header.php:43 e le
+   etichette per screen reader diventano VISIBILI e spingono giu' tutta la pagina.
+   Dichiarazione ripresa alla lettera dalla 1.6.4, quindi senza !important. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* B4 — callout.
+   La 2.x svuota la regola base (resta solo position/overflow) e perde padding, bordo,
+   margine, border-radius e soprattutto max-width. Nel tema il callout non e' un
+   dettaglio: inc/scripts.js:25 lo applica a tutti i blockquote e comments.php:28,36,44
+   lo usa per il blocco commenti. Senza max-width il form commenti passa da 530px a
+   731px di larghezza, trascinando con se' l'intera colonna. */
+.callout {
+  padding: calc(2.5 * var(--bi1-rem)) calc(2.222 * var(--bi1-rem));
+  border: 1px solid #5b6f82;
+  border-radius: 8px;
+  max-width: 60ch;
+  margin: calc(1.75 * var(--bi1-rem)) 0 var(--bi1-rem);
+}
+
+.callout.callout-highlight {
+  padding: 0 calc(2.222 * var(--bi1-rem));
+}
+
+/* B4a — componenti che in 1.6.4 erano in PIXEL e in 2.x sono passati a rem.
+   Come per le spaziature (B7), la differenza e' invisibile finche' la root vale 16px e
+   diventa una rottura dove un plugin la cambia. Non si forza la root a 16px: sulla
+   pagina dell'Albo valeva 10px anche in 1.6.4 (il CSS del plugin viene dopo quello del
+   tema e vinceva gia' allora), e imporla altererebbe la resa del plugin stesso, che i
+   propri rem li ha scritti aspettandosi 10px. Si ripristinano invece i valori in px. */
+.btn {
+  --bs-btn-font-size: 16px;
+  font-size: 16px;
+}
+
+/* La 2.x azzera il padding del corpo dei collapse; la 1.6.4 lo dichiarava. */
+.collapse-body {
+  padding: 12px 24px 42px;
+}
+
+/* Chip. La 2.x cambia margini e padding:
+     1.6.4  .chip{margin-right:4px;padding:0 16px 2px 8px}
+            .chip.chip-simple{margin:4px auto;margin-right:auto;margin-bottom:4px}
+     2.x    .chip{margin-bottom:8px;padding:0 4px 2px 8px} + .chip:not(:last-child){margin-right:8px}
+   Con margini piu' larghi i chip vanno a capo prima: nella home mobile la riga
+   "Altri argomenti" cresce di 8px e sposta in basso tutto il resto della pagina. */
+.chip {
+  margin-right: 4px;
+  margin-bottom: 0;
+  padding: 0 16px 2px 8px;
+}
+
+.chip:not(:last-child) {
+  margin-right: 4px;
+}
+
+.chip.chip-simple {
+  margin: 4px auto;
+  margin-right: auto;
+  margin-bottom: 4px;
+}
+
+/* B4d — dropdown e megamenu.
+   Le voci del megamenu sono chiuse a pagina ferma, quindi non compaiono nel diff
+   pixel, ma il megamenu e' il componente centrale del tema: qui la fedelta' va
+   verificata a menu aperto. La 2.x esprime tutto in custom property calcolate sulla
+   propria root, e le voci passano da 18px a 16px (--bs-dropdown-font-size:1rem
+   contro l'ereditarieta' della 1.6.4, che le lasciava a 18px). */
+.dropdown-menu {
+  --bs-dropdown-font-size: var(--bi1-rem);
+  --bs-dropdown-padding-y: calc(0.5 * var(--bi1-rem));
+  --bs-dropdown-spacer: calc(0.125 * var(--bi1-rem));
+  --bs-dropdown-min-width: calc(10 * var(--bi1-rem));
+  color: #19191a;
+}
+
+/* Questa regola esiste identica nelle due versioni (.navbar .dropdown-menu{font-size:1rem}):
+   cambia solo perche' cambia la root. Va ridichiarata a pari specificita', altrimenti
+   le voci del megamenu restano a 16px invece dei 18px della 1.6.4. */
+@media (min-width: 992px) {
+  .navbar .dropdown-menu {
+    font-size: var(--bi1-rem);
+  }
+}
+
+/* B4c — .section.
+   Sotto i 992px le due versioni coincidono (48px, poi 80px da 768px). Sopra no:
+     1.6.4  >=992px 80px,  >=1200px 112px
+     2.x    >=992px 96px,  >=1200px 96px
+   Nella home il tema usa .section per i servizi e per la mappa: sono 32px di altezza
+   persi per sezione a 1440px. */
+@media (min-width: 992px) {
+  .section {
+    padding: 80px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section {
+    padding: 112px;
+  }
+}
+
+/* B4b — controlli di form.
+   Qui la 2.x ha CONSERVATO i numeri rem della 1.x (.form-group{margin-bottom:3rem},
+   .form-control{height:2.5rem;font-size:1rem}, .form-group label{font-size:1rem}), che
+   pero' erano pensati per la root da 18px: su root 16px valgono il 12,5% in meno.
+   Vanno quindi riportati al loro valore assoluto con --bi1-rem.
+   La 2.x perde inoltre l'altezza fissa dei controlli, che diventa dipendente dal
+   contenuto. Misurato sul form commenti (comments.php:53-107):
+     .form-group margin-bottom 54px -> 48px, input 45px -> 40px, label 18px -> 16px,
+   per un accorciamento complessivo del form di circa 110px. */
+.form-group {
+  margin-bottom: calc(3 * var(--bi1-rem));
+}
+
+.form-group label {
+  font-size: var(--bi1-rem);
+  line-height: calc(-1px + 2.5 * var(--bi1-rem));
+}
+
+.form-control,
+input[type="date"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"] {
+  height: calc(2.5 * var(--bi1-rem));
+  font-size: var(--bi1-rem);
+}
+
+textarea,
+textarea.form-control {
+  height: auto;
+  font-size: var(--bi1-rem);
+}
+
+/* .form-check: la 2.x sposta il margine da sopra a sotto e dimensiona la casella,
+   che in 1.6.4 restava alla dimensione nativa del controllo.
+     1.6.4  .form-check{margin-top:.5rem}      .form-check-input{margin-top:.3rem}
+     2.x    .form-check{margin-bottom:.5rem}   .form-check-input{width:1em;height:1em;margin-top:.25em}
+   Sul consenso in comments.php:81-83 la casella passa da 13px a 18px. */
+.form-check {
+  margin-top: calc(0.5 * var(--bi1-rem));
+  margin-bottom: 0;
+}
+
+/* In 1.6.4 la casella era il controllo nativo del browser (13x13px) e BI non ne
+   dichiarava le dimensioni; la 2.x la ridisegna a 1em x 1em (18px). Non basta
+   rimettere width/height:auto — con l'appearance azzerata dalla 2.x il controllo
+   non ha piu' dimensione intrinseca e collassa a 2px (misurato). Si torna quindi
+   all'aspetto nativo con la sua dimensione. */
+.form-check-input {
+  appearance: auto;
+  -webkit-appearance: auto;
+  width: 13px;
+  height: 13px;
+  margin-top: calc(0.3 * var(--bi1-rem));
+}
+
+/* WCAG 2.5.8 (Target Size, AA nella 2.2) chiede 24x24 CSS px. La casella qui e' 13x13,
+   perche' la 1.6.4 usava il controllo nativo e il tema ne dipende per la resa.
+   Non si puo' ingrandire l'area con uno pseudo-elemento: gli <input> sono elementi
+   rimpiazzati e non generano ::before/::after.
+   Si applicano allora le due vie previste dal criterio stesso:
+   - la <label for> associata e' un bersaglio equivalente, e viene resa alta almeno 24px;
+   - la spaziatura fra caselle contigue e' portata a 24px, cosi' i cerchi da 24px
+     centrati su ciascuna non si sovrappongono (eccezione "spacing").
+   La dimensione visibile della casella non cambia. */
+.form-check {
+  min-height: 24px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.form-check + .form-check {
+  margin-top: 6px;
+}
+
+.form-check-label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  cursor: pointer;
+}
+
+/* B5b — utility di float e allineamento, rinominate in Bootstrap 5
+   (float-left/right -> float-start/end, text-left/right -> text-start/end).
+   Il fallimento e' silenzioso: la classe resta nel markup e semplicemente non fa piu'
+   nulla. Caso misurato — senza .float-right/.float-left in menu.php:25,28,41 i blocchi
+   della fascia di appartenenza smettono di affiancarsi, la colonna .entesup passa da
+   40px a 68px e con essa il logo afferente, che ne eredita l'altezza.
+   L'!important e' quello originale della 1.6.4: sono utility, e in v2 gli equivalenti
+   float-start/text-start lo hanno a loro volta. */
+.float-left {
+  float: left !important;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+@media (min-width: 992px) {
+  .text-lg-left {
+    text-align: left !important;
+  }
+}
+
+/* .mr-2 -> .me-2. In 1.6.4 la scala degli spaziatori e' in px, non in rem. */
+.mr-2 {
+  margin-right: 8px !important;
+}
+
+/* B5c — .badge-pill -> .rounded-pill, e metriche del badge.
+   La 2.x ridefinisce il componente: font-size .875em e font-weight 600 contro
+   .75em/700 della 1.x, e perde il bordo nero. */
+.badge-pill {
+  padding-right: 0.6em;
+  padding-left: 0.6em;
+  border-radius: calc(10 * var(--bi1-rem)); /* 10rem@18px = 180px, non 160px */
+}
+
+.badge {
+  --bs-badge-font-size: 0.75em;
+  --bs-badge-font-weight: 700;
+  border: 1px solid #000;
+}
+
+/* B5d — .form-row, rimossa in Bootstrap 5. Usata 8 volte in comments.php. */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.form-row > .col,
+.form-row > [class*="col-"] {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+/* B7 — scala delle spaziature, ripresa alla lettera dalla 1.6.4.
+   In 1.6.4 le utility di margine e padding sono espresse in PIXEL, indipendenti dalla root;
+   in 2.x sono in rem. Finche' la root vale 16px le due scale coincidono (4/8/16/24/48px),
+   ma basta che qualcun altro dichiari una root diversa perche' la 2.x si sfasi e la 1.x no.
+   Succede davvero: il plugin albo-pretorio-on-line carica il proprio CSS DOPO quello del
+   tema e dichiara html{font-size:62.5%}. In 1.6.4 non aveva effetto sulle spaziature,
+   in 2.x le riduce a 5/8 (misurato: 250px di altezza persi sulla pagina dell'Albo).
+   Le regole sono copiate identiche dalla 1.6.4, !important compreso: sono utility, e
+   anche gli equivalenti della 2.x lo hanno.
+   BLOCCO GENERATO — non modificare a mano; si rigenera dal CSS della 1.6.4. */
+.m-0 { margin:0!important }
+.mt-0,.my-0 { margin-top:0!important }
+.mr-0,.mx-0 { margin-right:0!important }
+.mb-0,.my-0 { margin-bottom:0!important }
+.ml-0,.mx-0 { margin-left:0!important }
+.m-1 { margin:4px!important }
+.mt-1,.my-1 { margin-top:4px!important }
+.mr-1,.mx-1 { margin-right:4px!important }
+.mb-1,.my-1 { margin-bottom:4px!important }
+.ml-1,.mx-1 { margin-left:4px!important }
+.m-2 { margin:8px!important }
+.mt-2,.my-2 { margin-top:8px!important }
+.mr-2,.mx-2 { margin-right:8px!important }
+.mb-2,.my-2 { margin-bottom:8px!important }
+.ml-2,.mx-2 { margin-left:8px!important }
+.m-3 { margin:16px!important }
+.mt-3,.my-3 { margin-top:16px!important }
+.mr-3,.mx-3 { margin-right:16px!important }
+.mb-3,.my-3 { margin-bottom:16px!important }
+.ml-3,.mx-3 { margin-left:16px!important }
+.m-4 { margin:24px!important }
+.mt-4,.my-4 { margin-top:24px!important }
+.mr-4,.mx-4 { margin-right:24px!important }
+.mb-4,.my-4 { margin-bottom:24px!important }
+.ml-4,.mx-4 { margin-left:24px!important }
+.m-5 { margin:48px!important }
+.mt-5,.my-5 { margin-top:48px!important }
+.mr-5,.mx-5 { margin-right:48px!important }
+.mb-5,.my-5 { margin-bottom:48px!important }
+.ml-5,.mx-5 { margin-left:48px!important }
+.p-0 { padding:0!important }
+.pt-0,.py-0 { padding-top:0!important }
+.pr-0,.px-0 { padding-right:0!important }
+.pb-0,.py-0 { padding-bottom:0!important }
+.pl-0,.px-0 { padding-left:0!important }
+.p-1 { padding:4px!important }
+.pt-1,.py-1 { padding-top:4px!important }
+.pr-1,.px-1 { padding-right:4px!important }
+.pb-1,.py-1 { padding-bottom:4px!important }
+.pl-1,.px-1 { padding-left:4px!important }
+.p-2 { padding:8px!important }
+.pt-2,.py-2 { padding-top:8px!important }
+.pr-2,.px-2 { padding-right:8px!important }
+.pb-2,.py-2 { padding-bottom:8px!important }
+.pl-2,.px-2 { padding-left:8px!important }
+.p-3 { padding:16px!important }
+.pt-3,.py-3 { padding-top:16px!important }
+.pr-3,.px-3 { padding-right:16px!important }
+.pb-3,.py-3 { padding-bottom:16px!important }
+.pl-3,.px-3 { padding-left:16px!important }
+.p-4 { padding:24px!important }
+.pt-4,.py-4 { padding-top:24px!important }
+.pr-4,.px-4 { padding-right:24px!important }
+.pb-4,.py-4 { padding-bottom:24px!important }
+.pl-4,.px-4 { padding-left:24px!important }
+.p-5 { padding:48px!important }
+.pt-5,.py-5 { padding-top:48px!important }
+.pr-5,.px-5 { padding-right:48px!important }
+.pb-5,.py-5 { padding-bottom:48px!important }
+.pl-5,.px-5 { padding-left:48px!important }
+.m-n1 { margin:-4px!important }
+.mt-n1,.my-n1 { margin-top:-4px!important }
+.mr-n1,.mx-n1 { margin-right:-4px!important }
+.mb-n1,.my-n1 { margin-bottom:-4px!important }
+.ml-n1,.mx-n1 { margin-left:-4px!important }
+.m-n2 { margin:-8px!important }
+.mt-n2,.my-n2 { margin-top:-8px!important }
+.mr-n2,.mx-n2 { margin-right:-8px!important }
+.mb-n2,.my-n2 { margin-bottom:-8px!important }
+.ml-n2,.mx-n2 { margin-left:-8px!important }
+.m-n3 { margin:-16px!important }
+.mt-n3,.my-n3 { margin-top:-16px!important }
+.mr-n3,.mx-n3 { margin-right:-16px!important }
+.mb-n3,.my-n3 { margin-bottom:-16px!important }
+.ml-n3,.mx-n3 { margin-left:-16px!important }
+.m-n4 { margin:-24px!important }
+.mt-n4,.my-n4 { margin-top:-24px!important }
+.mr-n4,.mx-n4 { margin-right:-24px!important }
+.mb-n4,.my-n4 { margin-bottom:-24px!important }
+.ml-n4,.mx-n4 { margin-left:-24px!important }
+.m-n5 { margin:-48px!important }
+.mt-n5,.my-n5 { margin-top:-48px!important }
+.mr-n5,.mx-n5 { margin-right:-48px!important }
+.mb-n5,.my-n5 { margin-bottom:-48px!important }
+.ml-n5,.mx-n5 { margin-left:-48px!important }
+.m-auto { margin:auto!important }
+.mt-auto,.my-auto { margin-top:auto!important }
+.mr-auto,.mx-auto { margin-right:auto!important }
+.mb-auto,.my-auto { margin-bottom:auto!important }
+.ml-auto,.mx-auto { margin-left:auto!important }
+@media (min-width:576px) {
+  .m-sm-0 { margin:0!important }
+  .mt-sm-0,.my-sm-0 { margin-top:0!important }
+  .mr-sm-0,.mx-sm-0 { margin-right:0!important }
+  .mb-sm-0,.my-sm-0 { margin-bottom:0!important }
+  .ml-sm-0,.mx-sm-0 { margin-left:0!important }
+  .m-sm-1 { margin:4px!important }
+  .mt-sm-1,.my-sm-1 { margin-top:4px!important }
+  .mr-sm-1,.mx-sm-1 { margin-right:4px!important }
+  .mb-sm-1,.my-sm-1 { margin-bottom:4px!important }
+  .ml-sm-1,.mx-sm-1 { margin-left:4px!important }
+  .m-sm-2 { margin:8px!important }
+  .mt-sm-2,.my-sm-2 { margin-top:8px!important }
+  .mr-sm-2,.mx-sm-2 { margin-right:8px!important }
+  .mb-sm-2,.my-sm-2 { margin-bottom:8px!important }
+  .ml-sm-2,.mx-sm-2 { margin-left:8px!important }
+  .m-sm-3 { margin:16px!important }
+  .mt-sm-3,.my-sm-3 { margin-top:16px!important }
+  .mr-sm-3,.mx-sm-3 { margin-right:16px!important }
+  .mb-sm-3,.my-sm-3 { margin-bottom:16px!important }
+  .ml-sm-3,.mx-sm-3 { margin-left:16px!important }
+  .m-sm-4 { margin:24px!important }
+  .mt-sm-4,.my-sm-4 { margin-top:24px!important }
+  .mr-sm-4,.mx-sm-4 { margin-right:24px!important }
+  .mb-sm-4,.my-sm-4 { margin-bottom:24px!important }
+  .ml-sm-4,.mx-sm-4 { margin-left:24px!important }
+  .m-sm-5 { margin:48px!important }
+  .mt-sm-5,.my-sm-5 { margin-top:48px!important }
+  .mr-sm-5,.mx-sm-5 { margin-right:48px!important }
+  .mb-sm-5,.my-sm-5 { margin-bottom:48px!important }
+  .ml-sm-5,.mx-sm-5 { margin-left:48px!important }
+  .p-sm-0 { padding:0!important }
+  .pt-sm-0,.py-sm-0 { padding-top:0!important }
+  .pr-sm-0,.px-sm-0 { padding-right:0!important }
+  .pb-sm-0,.py-sm-0 { padding-bottom:0!important }
+  .pl-sm-0,.px-sm-0 { padding-left:0!important }
+  .p-sm-1 { padding:4px!important }
+  .pt-sm-1,.py-sm-1 { padding-top:4px!important }
+  .pr-sm-1,.px-sm-1 { padding-right:4px!important }
+  .pb-sm-1,.py-sm-1 { padding-bottom:4px!important }
+  .pl-sm-1,.px-sm-1 { padding-left:4px!important }
+  .p-sm-2 { padding:8px!important }
+  .pt-sm-2,.py-sm-2 { padding-top:8px!important }
+  .pr-sm-2,.px-sm-2 { padding-right:8px!important }
+  .pb-sm-2,.py-sm-2 { padding-bottom:8px!important }
+  .pl-sm-2,.px-sm-2 { padding-left:8px!important }
+  .p-sm-3 { padding:16px!important }
+  .pt-sm-3,.py-sm-3 { padding-top:16px!important }
+  .pr-sm-3,.px-sm-3 { padding-right:16px!important }
+  .pb-sm-3,.py-sm-3 { padding-bottom:16px!important }
+  .pl-sm-3,.px-sm-3 { padding-left:16px!important }
+  .p-sm-4 { padding:24px!important }
+  .pt-sm-4,.py-sm-4 { padding-top:24px!important }
+  .pr-sm-4,.px-sm-4 { padding-right:24px!important }
+  .pb-sm-4,.py-sm-4 { padding-bottom:24px!important }
+  .pl-sm-4,.px-sm-4 { padding-left:24px!important }
+  .p-sm-5 { padding:48px!important }
+  .pt-sm-5,.py-sm-5 { padding-top:48px!important }
+  .pr-sm-5,.px-sm-5 { padding-right:48px!important }
+  .pb-sm-5,.py-sm-5 { padding-bottom:48px!important }
+  .pl-sm-5,.px-sm-5 { padding-left:48px!important }
+  .m-sm-n1 { margin:-4px!important }
+  .mt-sm-n1,.my-sm-n1 { margin-top:-4px!important }
+  .mr-sm-n1,.mx-sm-n1 { margin-right:-4px!important }
+  .mb-sm-n1,.my-sm-n1 { margin-bottom:-4px!important }
+  .ml-sm-n1,.mx-sm-n1 { margin-left:-4px!important }
+  .m-sm-n2 { margin:-8px!important }
+  .mt-sm-n2,.my-sm-n2 { margin-top:-8px!important }
+  .mr-sm-n2,.mx-sm-n2 { margin-right:-8px!important }
+  .mb-sm-n2,.my-sm-n2 { margin-bottom:-8px!important }
+  .ml-sm-n2,.mx-sm-n2 { margin-left:-8px!important }
+  .m-sm-n3 { margin:-16px!important }
+  .mt-sm-n3,.my-sm-n3 { margin-top:-16px!important }
+  .mr-sm-n3,.mx-sm-n3 { margin-right:-16px!important }
+  .mb-sm-n3,.my-sm-n3 { margin-bottom:-16px!important }
+  .ml-sm-n3,.mx-sm-n3 { margin-left:-16px!important }
+  .m-sm-n4 { margin:-24px!important }
+  .mt-sm-n4,.my-sm-n4 { margin-top:-24px!important }
+  .mr-sm-n4,.mx-sm-n4 { margin-right:-24px!important }
+  .mb-sm-n4,.my-sm-n4 { margin-bottom:-24px!important }
+  .ml-sm-n4,.mx-sm-n4 { margin-left:-24px!important }
+  .m-sm-n5 { margin:-48px!important }
+  .mt-sm-n5,.my-sm-n5 { margin-top:-48px!important }
+  .mr-sm-n5,.mx-sm-n5 { margin-right:-48px!important }
+  .mb-sm-n5,.my-sm-n5 { margin-bottom:-48px!important }
+  .ml-sm-n5,.mx-sm-n5 { margin-left:-48px!important }
+  .m-sm-auto { margin:auto!important }
+  .mt-sm-auto,.my-sm-auto { margin-top:auto!important }
+  .mr-sm-auto,.mx-sm-auto { margin-right:auto!important }
+  .mb-sm-auto,.my-sm-auto { margin-bottom:auto!important }
+  .ml-sm-auto,.mx-sm-auto { margin-left:auto!important }
+}
+@media (min-width:768px) {
+  .m-md-0 { margin:0!important }
+  .mt-md-0,.my-md-0 { margin-top:0!important }
+  .mr-md-0,.mx-md-0 { margin-right:0!important }
+  .mb-md-0,.my-md-0 { margin-bottom:0!important }
+  .ml-md-0,.mx-md-0 { margin-left:0!important }
+  .m-md-1 { margin:4px!important }
+  .mt-md-1,.my-md-1 { margin-top:4px!important }
+  .mr-md-1,.mx-md-1 { margin-right:4px!important }
+  .mb-md-1,.my-md-1 { margin-bottom:4px!important }
+  .ml-md-1,.mx-md-1 { margin-left:4px!important }
+  .m-md-2 { margin:8px!important }
+  .mt-md-2,.my-md-2 { margin-top:8px!important }
+  .mr-md-2,.mx-md-2 { margin-right:8px!important }
+  .mb-md-2,.my-md-2 { margin-bottom:8px!important }
+  .ml-md-2,.mx-md-2 { margin-left:8px!important }
+  .m-md-3 { margin:16px!important }
+  .mt-md-3,.my-md-3 { margin-top:16px!important }
+  .mr-md-3,.mx-md-3 { margin-right:16px!important }
+  .mb-md-3,.my-md-3 { margin-bottom:16px!important }
+  .ml-md-3,.mx-md-3 { margin-left:16px!important }
+  .m-md-4 { margin:24px!important }
+  .mt-md-4,.my-md-4 { margin-top:24px!important }
+  .mr-md-4,.mx-md-4 { margin-right:24px!important }
+  .mb-md-4,.my-md-4 { margin-bottom:24px!important }
+  .ml-md-4,.mx-md-4 { margin-left:24px!important }
+  .m-md-5 { margin:48px!important }
+  .mt-md-5,.my-md-5 { margin-top:48px!important }
+  .mr-md-5,.mx-md-5 { margin-right:48px!important }
+  .mb-md-5,.my-md-5 { margin-bottom:48px!important }
+  .ml-md-5,.mx-md-5 { margin-left:48px!important }
+  .p-md-0 { padding:0!important }
+  .pt-md-0,.py-md-0 { padding-top:0!important }
+  .pr-md-0,.px-md-0 { padding-right:0!important }
+  .pb-md-0,.py-md-0 { padding-bottom:0!important }
+  .pl-md-0,.px-md-0 { padding-left:0!important }
+  .p-md-1 { padding:4px!important }
+  .pt-md-1,.py-md-1 { padding-top:4px!important }
+  .pr-md-1,.px-md-1 { padding-right:4px!important }
+  .pb-md-1,.py-md-1 { padding-bottom:4px!important }
+  .pl-md-1,.px-md-1 { padding-left:4px!important }
+  .p-md-2 { padding:8px!important }
+  .pt-md-2,.py-md-2 { padding-top:8px!important }
+  .pr-md-2,.px-md-2 { padding-right:8px!important }
+  .pb-md-2,.py-md-2 { padding-bottom:8px!important }
+  .pl-md-2,.px-md-2 { padding-left:8px!important }
+  .p-md-3 { padding:16px!important }
+  .pt-md-3,.py-md-3 { padding-top:16px!important }
+  .pr-md-3,.px-md-3 { padding-right:16px!important }
+  .pb-md-3,.py-md-3 { padding-bottom:16px!important }
+  .pl-md-3,.px-md-3 { padding-left:16px!important }
+  .p-md-4 { padding:24px!important }
+  .pt-md-4,.py-md-4 { padding-top:24px!important }
+  .pr-md-4,.px-md-4 { padding-right:24px!important }
+  .pb-md-4,.py-md-4 { padding-bottom:24px!important }
+  .pl-md-4,.px-md-4 { padding-left:24px!important }
+  .p-md-5 { padding:48px!important }
+  .pt-md-5,.py-md-5 { padding-top:48px!important }
+  .pr-md-5,.px-md-5 { padding-right:48px!important }
+  .pb-md-5,.py-md-5 { padding-bottom:48px!important }
+  .pl-md-5,.px-md-5 { padding-left:48px!important }
+  .m-md-n1 { margin:-4px!important }
+  .mt-md-n1,.my-md-n1 { margin-top:-4px!important }
+  .mr-md-n1,.mx-md-n1 { margin-right:-4px!important }
+  .mb-md-n1,.my-md-n1 { margin-bottom:-4px!important }
+  .ml-md-n1,.mx-md-n1 { margin-left:-4px!important }
+  .m-md-n2 { margin:-8px!important }
+  .mt-md-n2,.my-md-n2 { margin-top:-8px!important }
+  .mr-md-n2,.mx-md-n2 { margin-right:-8px!important }
+  .mb-md-n2,.my-md-n2 { margin-bottom:-8px!important }
+  .ml-md-n2,.mx-md-n2 { margin-left:-8px!important }
+  .m-md-n3 { margin:-16px!important }
+  .mt-md-n3,.my-md-n3 { margin-top:-16px!important }
+  .mr-md-n3,.mx-md-n3 { margin-right:-16px!important }
+  .mb-md-n3,.my-md-n3 { margin-bottom:-16px!important }
+  .ml-md-n3,.mx-md-n3 { margin-left:-16px!important }
+  .m-md-n4 { margin:-24px!important }
+  .mt-md-n4,.my-md-n4 { margin-top:-24px!important }
+  .mr-md-n4,.mx-md-n4 { margin-right:-24px!important }
+  .mb-md-n4,.my-md-n4 { margin-bottom:-24px!important }
+  .ml-md-n4,.mx-md-n4 { margin-left:-24px!important }
+  .m-md-n5 { margin:-48px!important }
+  .mt-md-n5,.my-md-n5 { margin-top:-48px!important }
+  .mr-md-n5,.mx-md-n5 { margin-right:-48px!important }
+  .mb-md-n5,.my-md-n5 { margin-bottom:-48px!important }
+  .ml-md-n5,.mx-md-n5 { margin-left:-48px!important }
+  .m-md-auto { margin:auto!important }
+  .mt-md-auto,.my-md-auto { margin-top:auto!important }
+  .mr-md-auto,.mx-md-auto { margin-right:auto!important }
+  .mb-md-auto,.my-md-auto { margin-bottom:auto!important }
+  .ml-md-auto,.mx-md-auto { margin-left:auto!important }
+}
+@media (min-width:992px) {
+  .m-lg-0 { margin:0!important }
+  .mt-lg-0,.my-lg-0 { margin-top:0!important }
+  .mr-lg-0,.mx-lg-0 { margin-right:0!important }
+  .mb-lg-0,.my-lg-0 { margin-bottom:0!important }
+  .ml-lg-0,.mx-lg-0 { margin-left:0!important }
+  .m-lg-1 { margin:4px!important }
+  .mt-lg-1,.my-lg-1 { margin-top:4px!important }
+  .mr-lg-1,.mx-lg-1 { margin-right:4px!important }
+  .mb-lg-1,.my-lg-1 { margin-bottom:4px!important }
+  .ml-lg-1,.mx-lg-1 { margin-left:4px!important }
+  .m-lg-2 { margin:8px!important }
+  .mt-lg-2,.my-lg-2 { margin-top:8px!important }
+  .mr-lg-2,.mx-lg-2 { margin-right:8px!important }
+  .mb-lg-2,.my-lg-2 { margin-bottom:8px!important }
+  .ml-lg-2,.mx-lg-2 { margin-left:8px!important }
+  .m-lg-3 { margin:16px!important }
+  .mt-lg-3,.my-lg-3 { margin-top:16px!important }
+  .mr-lg-3,.mx-lg-3 { margin-right:16px!important }
+  .mb-lg-3,.my-lg-3 { margin-bottom:16px!important }
+  .ml-lg-3,.mx-lg-3 { margin-left:16px!important }
+  .m-lg-4 { margin:24px!important }
+  .mt-lg-4,.my-lg-4 { margin-top:24px!important }
+  .mr-lg-4,.mx-lg-4 { margin-right:24px!important }
+  .mb-lg-4,.my-lg-4 { margin-bottom:24px!important }
+  .ml-lg-4,.mx-lg-4 { margin-left:24px!important }
+  .m-lg-5 { margin:48px!important }
+  .mt-lg-5,.my-lg-5 { margin-top:48px!important }
+  .mr-lg-5,.mx-lg-5 { margin-right:48px!important }
+  .mb-lg-5,.my-lg-5 { margin-bottom:48px!important }
+  .ml-lg-5,.mx-lg-5 { margin-left:48px!important }
+  .p-lg-0 { padding:0!important }
+  .pt-lg-0,.py-lg-0 { padding-top:0!important }
+  .pr-lg-0,.px-lg-0 { padding-right:0!important }
+  .pb-lg-0,.py-lg-0 { padding-bottom:0!important }
+  .pl-lg-0,.px-lg-0 { padding-left:0!important }
+  .p-lg-1 { padding:4px!important }
+  .pt-lg-1,.py-lg-1 { padding-top:4px!important }
+  .pr-lg-1,.px-lg-1 { padding-right:4px!important }
+  .pb-lg-1,.py-lg-1 { padding-bottom:4px!important }
+  .pl-lg-1,.px-lg-1 { padding-left:4px!important }
+  .p-lg-2 { padding:8px!important }
+  .pt-lg-2,.py-lg-2 { padding-top:8px!important }
+  .pr-lg-2,.px-lg-2 { padding-right:8px!important }
+  .pb-lg-2,.py-lg-2 { padding-bottom:8px!important }
+  .pl-lg-2,.px-lg-2 { padding-left:8px!important }
+  .p-lg-3 { padding:16px!important }
+  .pt-lg-3,.py-lg-3 { padding-top:16px!important }
+  .pr-lg-3,.px-lg-3 { padding-right:16px!important }
+  .pb-lg-3,.py-lg-3 { padding-bottom:16px!important }
+  .pl-lg-3,.px-lg-3 { padding-left:16px!important }
+  .p-lg-4 { padding:24px!important }
+  .pt-lg-4,.py-lg-4 { padding-top:24px!important }
+  .pr-lg-4,.px-lg-4 { padding-right:24px!important }
+  .pb-lg-4,.py-lg-4 { padding-bottom:24px!important }
+  .pl-lg-4,.px-lg-4 { padding-left:24px!important }
+  .p-lg-5 { padding:48px!important }
+  .pt-lg-5,.py-lg-5 { padding-top:48px!important }
+  .pr-lg-5,.px-lg-5 { padding-right:48px!important }
+  .pb-lg-5,.py-lg-5 { padding-bottom:48px!important }
+  .pl-lg-5,.px-lg-5 { padding-left:48px!important }
+  .m-lg-n1 { margin:-4px!important }
+  .mt-lg-n1,.my-lg-n1 { margin-top:-4px!important }
+  .mr-lg-n1,.mx-lg-n1 { margin-right:-4px!important }
+  .mb-lg-n1,.my-lg-n1 { margin-bottom:-4px!important }
+  .ml-lg-n1,.mx-lg-n1 { margin-left:-4px!important }
+  .m-lg-n2 { margin:-8px!important }
+  .mt-lg-n2,.my-lg-n2 { margin-top:-8px!important }
+  .mr-lg-n2,.mx-lg-n2 { margin-right:-8px!important }
+  .mb-lg-n2,.my-lg-n2 { margin-bottom:-8px!important }
+  .ml-lg-n2,.mx-lg-n2 { margin-left:-8px!important }
+  .m-lg-n3 { margin:-16px!important }
+  .mt-lg-n3,.my-lg-n3 { margin-top:-16px!important }
+  .mr-lg-n3,.mx-lg-n3 { margin-right:-16px!important }
+  .mb-lg-n3,.my-lg-n3 { margin-bottom:-16px!important }
+  .ml-lg-n3,.mx-lg-n3 { margin-left:-16px!important }
+  .m-lg-n4 { margin:-24px!important }
+  .mt-lg-n4,.my-lg-n4 { margin-top:-24px!important }
+  .mr-lg-n4,.mx-lg-n4 { margin-right:-24px!important }
+  .mb-lg-n4,.my-lg-n4 { margin-bottom:-24px!important }
+  .ml-lg-n4,.mx-lg-n4 { margin-left:-24px!important }
+  .m-lg-n5 { margin:-48px!important }
+  .mt-lg-n5,.my-lg-n5 { margin-top:-48px!important }
+  .mr-lg-n5,.mx-lg-n5 { margin-right:-48px!important }
+  .mb-lg-n5,.my-lg-n5 { margin-bottom:-48px!important }
+  .ml-lg-n5,.mx-lg-n5 { margin-left:-48px!important }
+  .m-lg-auto { margin:auto!important }
+  .mt-lg-auto,.my-lg-auto { margin-top:auto!important }
+  .mr-lg-auto,.mx-lg-auto { margin-right:auto!important }
+  .mb-lg-auto,.my-lg-auto { margin-bottom:auto!important }
+  .ml-lg-auto,.mx-lg-auto { margin-left:auto!important }
+}
+@media (min-width:1200px) {
+  .m-xl-0 { margin:0!important }
+  .mt-xl-0,.my-xl-0 { margin-top:0!important }
+  .mr-xl-0,.mx-xl-0 { margin-right:0!important }
+  .mb-xl-0,.my-xl-0 { margin-bottom:0!important }
+  .ml-xl-0,.mx-xl-0 { margin-left:0!important }
+  .m-xl-1 { margin:4px!important }
+  .mt-xl-1,.my-xl-1 { margin-top:4px!important }
+  .mr-xl-1,.mx-xl-1 { margin-right:4px!important }
+  .mb-xl-1,.my-xl-1 { margin-bottom:4px!important }
+  .ml-xl-1,.mx-xl-1 { margin-left:4px!important }
+  .m-xl-2 { margin:8px!important }
+  .mt-xl-2,.my-xl-2 { margin-top:8px!important }
+  .mr-xl-2,.mx-xl-2 { margin-right:8px!important }
+  .mb-xl-2,.my-xl-2 { margin-bottom:8px!important }
+  .ml-xl-2,.mx-xl-2 { margin-left:8px!important }
+  .m-xl-3 { margin:16px!important }
+  .mt-xl-3,.my-xl-3 { margin-top:16px!important }
+  .mr-xl-3,.mx-xl-3 { margin-right:16px!important }
+  .mb-xl-3,.my-xl-3 { margin-bottom:16px!important }
+  .ml-xl-3,.mx-xl-3 { margin-left:16px!important }
+  .m-xl-4 { margin:24px!important }
+  .mt-xl-4,.my-xl-4 { margin-top:24px!important }
+  .mr-xl-4,.mx-xl-4 { margin-right:24px!important }
+  .mb-xl-4,.my-xl-4 { margin-bottom:24px!important }
+  .ml-xl-4,.mx-xl-4 { margin-left:24px!important }
+  .m-xl-5 { margin:48px!important }
+  .mt-xl-5,.my-xl-5 { margin-top:48px!important }
+  .mr-xl-5,.mx-xl-5 { margin-right:48px!important }
+  .mb-xl-5,.my-xl-5 { margin-bottom:48px!important }
+  .ml-xl-5,.mx-xl-5 { margin-left:48px!important }
+  .p-xl-0 { padding:0!important }
+  .pt-xl-0,.py-xl-0 { padding-top:0!important }
+  .pr-xl-0,.px-xl-0 { padding-right:0!important }
+  .pb-xl-0,.py-xl-0 { padding-bottom:0!important }
+  .pl-xl-0,.px-xl-0 { padding-left:0!important }
+  .p-xl-1 { padding:4px!important }
+  .pt-xl-1,.py-xl-1 { padding-top:4px!important }
+  .pr-xl-1,.px-xl-1 { padding-right:4px!important }
+  .pb-xl-1,.py-xl-1 { padding-bottom:4px!important }
+  .pl-xl-1,.px-xl-1 { padding-left:4px!important }
+  .p-xl-2 { padding:8px!important }
+  .pt-xl-2,.py-xl-2 { padding-top:8px!important }
+  .pr-xl-2,.px-xl-2 { padding-right:8px!important }
+  .pb-xl-2,.py-xl-2 { padding-bottom:8px!important }
+  .pl-xl-2,.px-xl-2 { padding-left:8px!important }
+  .p-xl-3 { padding:16px!important }
+  .pt-xl-3,.py-xl-3 { padding-top:16px!important }
+  .pr-xl-3,.px-xl-3 { padding-right:16px!important }
+  .pb-xl-3,.py-xl-3 { padding-bottom:16px!important }
+  .pl-xl-3,.px-xl-3 { padding-left:16px!important }
+  .p-xl-4 { padding:24px!important }
+  .pt-xl-4,.py-xl-4 { padding-top:24px!important }
+  .pr-xl-4,.px-xl-4 { padding-right:24px!important }
+  .pb-xl-4,.py-xl-4 { padding-bottom:24px!important }
+  .pl-xl-4,.px-xl-4 { padding-left:24px!important }
+  .p-xl-5 { padding:48px!important }
+  .pt-xl-5,.py-xl-5 { padding-top:48px!important }
+  .pr-xl-5,.px-xl-5 { padding-right:48px!important }
+  .pb-xl-5,.py-xl-5 { padding-bottom:48px!important }
+  .pl-xl-5,.px-xl-5 { padding-left:48px!important }
+  .m-xl-n1 { margin:-4px!important }
+  .mt-xl-n1,.my-xl-n1 { margin-top:-4px!important }
+  .mr-xl-n1,.mx-xl-n1 { margin-right:-4px!important }
+  .mb-xl-n1,.my-xl-n1 { margin-bottom:-4px!important }
+  .ml-xl-n1,.mx-xl-n1 { margin-left:-4px!important }
+  .m-xl-n2 { margin:-8px!important }
+  .mt-xl-n2,.my-xl-n2 { margin-top:-8px!important }
+  .mr-xl-n2,.mx-xl-n2 { margin-right:-8px!important }
+  .mb-xl-n2,.my-xl-n2 { margin-bottom:-8px!important }
+  .ml-xl-n2,.mx-xl-n2 { margin-left:-8px!important }
+  .m-xl-n3 { margin:-16px!important }
+  .mt-xl-n3,.my-xl-n3 { margin-top:-16px!important }
+  .mr-xl-n3,.mx-xl-n3 { margin-right:-16px!important }
+  .mb-xl-n3,.my-xl-n3 { margin-bottom:-16px!important }
+  .ml-xl-n3,.mx-xl-n3 { margin-left:-16px!important }
+  .m-xl-n4 { margin:-24px!important }
+  .mt-xl-n4,.my-xl-n4 { margin-top:-24px!important }
+  .mr-xl-n4,.mx-xl-n4 { margin-right:-24px!important }
+  .mb-xl-n4,.my-xl-n4 { margin-bottom:-24px!important }
+  .ml-xl-n4,.mx-xl-n4 { margin-left:-24px!important }
+  .m-xl-n5 { margin:-48px!important }
+  .mt-xl-n5,.my-xl-n5 { margin-top:-48px!important }
+  .mr-xl-n5,.mx-xl-n5 { margin-right:-48px!important }
+  .mb-xl-n5,.my-xl-n5 { margin-bottom:-48px!important }
+  .ml-xl-n5,.mx-xl-n5 { margin-left:-48px!important }
+  .m-xl-auto { margin:auto!important }
+  .mt-xl-auto,.my-xl-auto { margin-top:auto!important }
+  .mr-xl-auto,.mx-xl-auto { margin-right:auto!important }
+  .mb-xl-auto,.my-xl-auto { margin-bottom:auto!important }
+  .ml-xl-auto,.mx-xl-auto { margin-left:auto!important }
+}

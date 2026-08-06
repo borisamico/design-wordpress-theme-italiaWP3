@@ -1,0 +1,197 @@
+jQuery(function ($) {
+    $(document).ready(function () {
+
+        var theme_uri = itwp3.siteurl;
+
+        $(".box-servizi a").addClass("u-color-white");
+        $(".form-submit > input").addClass("btn btn-default");
+
+        /* Metto la data dei post nel titolo (nella sidebar) */
+        $(".italiawp3-sidebar > ul > li, .italiawp3-sidebar > .wp-widget-group__inner-blocks > ul > li").each(function () {
+            if ($('> span', this).length === 1 && $('> a', this).length === 1) {
+                let span = $(this).find('span');
+                let a = $(this).find('a');
+                span.html("<br><small>" + span.html() + "</small>");
+                a.append(span);
+            }
+        });
+
+        $("img.alignnone").parent('a').addClass("a-alignnone");
+        $("img.aligncenter").parent('a').addClass("a-aligncenter");
+        $("img.alignleft").parent('a').addClass("a-alignleft");
+        $("img.alignright").parent('a').addClass("a-alignright");
+
+        /* Gestisco i blockquote */
+        $("blockquote").addClass("callout important callout-punti");
+
+        /* Sistemo gli elenchi nella sidebar */
+        $(".italiawp3-sidebar > ul li a, .italiawp3-sidebar > .wp-widget-group__inner-blocks > ul li a").addClass("list-group-item list-group-item-action");
+        $(".italiawp3-sidebar > ul li, .italiawp3-sidebar > .wp-widget-group__inner-blocks > ul li").changeElementType('span');
+        $(".italiawp3-sidebar > ul, .italiawp3-sidebar > .wp-widget-group__inner-blocks > ul").addClass("list-group lista-paragrafi").changeElementType('div');
+        
+        $(".italiawp3-sidebar .wp-block-search").parent().addClass("cerca");
+
+        /* Sistemo la mappa in home */
+        mapWrap();
+
+        // .map-wrap e' un <button> (template-parts/section-map.php): il click scatta anche
+        // con Invio e Spazio. All'attivazione l'iframe rientra nell'ordine di tabulazione.
+        $(".map-wrap").click(function () {
+            $(this).fadeOut(10);
+            $(this).siblings("iframe").removeAttr("tabindex");
+        });
+        /* Fine sistemazione mappa */
+
+        // magnific-popup e' caricato solo nelle pagine che mostrano immagini o gallerie
+        // (vedi italiawp3_enqueue_gallery_assets), quindi va verificato prima dell'uso.
+        if ($.fn.magnificPopup) {
+            // L'href puo' mancare (ancore, link generati da plugin): senza il fallback
+            // .match() su undefined lancia e interrompe tutto il resto del ready.
+            $('.image-content a').filter(function () {
+                return ($(this).attr('href') || '').match(/\.(jpeg|jpg|png|gif|webp)/i);
+            }).magnificPopup({
+                type: 'image'
+            });
+
+            $('.magnific-popup-gallery').filter(function () {
+                return ($(this).attr('href') || '').match(/\.(jpeg|jpg|png|gif|webp)/i);
+            }).magnificPopup({
+                type: 'image',
+                gallery: {
+                    enabled: true
+                }
+            });
+        }
+
+        /* Aggiungo l'icona di Link Esterno */
+        // L'icona e' decorativa e va nascosta agli AT (aria-hidden), ma l'informazione
+        // che porta — "questo link apre un sito esterno" — e' sostanziale e va data in
+        // forma testuale, altrimenti resta veicolata dal solo aspetto (WCAG 1.1.1).
+        // Il testo e' in .sr-only, quindi invisibile e letto dagli screen reader.
+        $('a').each(function () {
+            if (!(location.hostname === this.hostname || !this.hostname.length ||
+              !$.trim($(this).html()).length || $(this).is(':has(figure)') ||
+              $(this).closest("#mainheader").length || $(this).closest(".social").length)) {
+                let ext = '<svg class="icon icon-link icon-external-link" aria-hidden="true" focusable="false">' +
+                          '<use xlink:href="' + theme_uri + '/static/img/bootstrap-italia.svg#it-external-link"></use></svg>' +
+                          '<span class="sr-only"> ' + italiawp3_a11y.linkEsterno + '</span>';
+                $(this).append(ext);
+            }
+        });
+
+        $(".box-servizi .scheda-sito").each(function () {
+            if ($("img", this).length) {
+                if ($(this).html().replace(/<img[^>]*>/g, "") == 0) $(this).addClass("no-padding");
+            }
+            
+            if ($(this).parent().find('.icon-external-link').length) {
+                let link = $(this).parent().find('.icon-external-link');
+                
+                if ( (link.parent().not('.no-padding').find('img').not('.icona').length) && ($(this).not('.no-padding').length == 0) ) {
+                    link[0].classList.add("icon-external-link-img");
+                }
+                
+                $(this).append(link);
+            }
+        });
+
+        /* Slide Gallerie Home */
+        // owl.carousel e' caricato solo dove c'e' davvero un carosello.
+        if ($.fn.owlCarousel) {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                navContainer: ".owl-nav",
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    768: {
+                        items: 2
+                    },
+                    992: {
+                        items: 3
+                    }
+                }
+            });
+        }
+
+        /* NUOVI */
+        $('.footer-colonne ul').addClass('footer-list clearfix');
+
+        $('.custom_megamenu_intestazione').each(function () {
+            $(this).wrap("<h5></h5>");
+        });
+
+        /* Fix Menu Principale, sottomenu sulla destra */
+        fixMainMenu();
+        
+        /* Fix Menu Lingue Polylang e WPML */
+        fixLangMenu("pll-parent-menu-item");
+        fixLangMenu("menu-item-language");
+    });
+
+    $(window).resize(function () {
+        mapWrap();
+        fixMainMenu();
+    });
+
+    function mapWrap() {
+        let altMap = parseInt($(".map-full-content iframe").outerHeight(), 10);
+        $(".map-wrap").css("height", altMap + "px").css("margin-bottom", -altMap + "px");
+        return;
+    }
+
+    function fixMainMenu() {
+        $('#mainheader .entesup a').has('img').addClass('image');
+
+        let numLi = $('#menu-principale > li').length;
+        let largWi = (parseInt($(window).innerWidth(), 10) / 2) - 25;
+
+        $('#menu-principale > li').each(function (i) {
+            $(this).find("ul.dropdown-menu").removeClass("drodownmenu-on-right");
+            
+            let posiLi = $(this).position().left;
+            let ul = $($(this).find("ul")[0]);
+            
+            if(ul.children().length < 4) {
+                if (((i + 1) > (numLi / 2)) && (posiLi > largWi)) {
+                    $(this).find("ul.dropdown-menu").addClass("drodownmenu-on-right");
+                }
+            }else{
+                $(this).addClass('megamenu');
+            }
+            
+        });
+        return;
+    }
+    
+    function fixLangMenu(pluginClass) {
+        if ($("."+pluginClass)[0]){
+            let numElement = 7;
+            let langMenu = $("#menu-principale ."+pluginClass+" > ul");
+            let langMenuLi = $('<li class="langMenuLi menu-item menu-item-has-children dropdown nav-item"></li>');
+
+            $("#menu-principale ."+pluginClass+" > ul li:not(.langMenuLi)").each(function (i) {
+                if( (i==0) || ( inseriti == numElement ) ) {
+                    inseriti = 0;
+                    delete nuovoLi;
+                    nuovoLi = langMenuLi.clone();
+                    nuovoLi.append("<ul></ul>");
+                    langMenu.append(nuovoLi);
+                }
+                langMenuLiElem = $(this).find("h5 > a");
+
+                thisElem = $('<li class="menu-item nav-item"></li>'); 
+                thisElem.append(langMenuLiElem);
+                nuovoLi.find("ul").append(thisElem);
+                delete thisElem;
+                
+                inseriti++;
+                $(this).remove();
+            });
+            delete numElement, langMenu, langMenuLi;
+        }
+        return;
+    }
+});
