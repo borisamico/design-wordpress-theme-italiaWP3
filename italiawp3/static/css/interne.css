@@ -17,6 +17,9 @@
 .argomenti :is(h4,.etichetta-tassonomia) {
     font-size: 0.778em;
     font-weight: normal;
+    /* Il font va dichiarato: da quando l'etichetta e' un <p> invece di un <h4>,
+       in home la regola .novita-testo p le imporrebbe Lora. */
+    font-family: "Titillium Web",Geneva,Tahoma,sans-serif;
 }
 
 #argomenti-sezione .argomenti-sezione-info {
