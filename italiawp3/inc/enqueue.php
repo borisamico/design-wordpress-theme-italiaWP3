@@ -15,26 +15,6 @@ if (!defined('italiawp3_BOOTSTRAP_ITALIA_VERSION')) {
 }
 
 /**
- * Enqueue admin stylesheet
- */
-function italiawp3_admin_style() {
-    wp_register_style('italiawp3-admin-css', get_template_directory_uri() . '/inc/admin.css');
-    wp_enqueue_style('italiawp3-admin-css');
-}
-
-add_action('admin_enqueue_scripts', 'italiawp3_admin_style');
-
-/**
- * Enqueue editor stylesheet
- */
-function brb_add_editor_styles() {
-    // Enqueue editor styles and fonts.
-    add_editor_style(get_template_directory_uri() . '/inc/editor.css');
-}
-
-add_action('admin_init', 'brb_add_editor_styles');
-
-/**
  * Load fonts
  */
 if (!function_exists('italiawp3_theme_fonts')) :

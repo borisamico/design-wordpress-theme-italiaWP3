@@ -248,24 +248,6 @@ function italiawp3_customize_register($wp_customize) {
                 'settings' => 'italiawp3_main_color'
             )
     ));
-
-    // Sanitize function for file input
-    function italiawp3_sanitize_file( $file, $setting ) {
-
-        //allowed file types
-        $mimes = array(
-                'jpg|jpeg|jpe' => 'image/jpeg',
-                'gif'          => 'image/gif',
-                'png'          => 'image/png',
-                'svg'          => 'image/svg'
-        );
-
-        //check file type from file name
-        $file_ext = wp_check_filetype( $file, $mimes );
-
-        //if file has a valid mime type return it, otherwise return default
-        return ( $file_ext['ext'] ? $file : $setting->default );
-    }
 }
 add_action('customize_register', 'italiawp3_customize_register');
 

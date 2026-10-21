@@ -89,14 +89,47 @@ function wp_get_attachment( $attachment_id ) {
 /* Immagini Singole */
 
 function get_attachment_id($url) {
+    $cache_key = md5($url);
+    $attachment_id = wp_cache_get($cache_key, 'italiawp3_attachment_id');
+    if (false === $attachment_id) {
+        $attachment_id = italiawp3_find_attachment_id($url);
+        wp_cache_set($cache_key, $attachment_id, 'italiawp3_attachment_id');
+    }
+    $attachment_id = (int) $attachment_id;
+
+    if ($attachment_id && function_exists('pll_get_post')) {
+        $translation = pll_get_post($attachment_id);
+        if ($translation) {
+            $attachment_id = $translation;
+        }
+    }
+
+    return $attachment_id;
+}
+
+function italiawp3_find_attachment_id($url) {
     $attachment_id = 0;
     $dir = wp_upload_dir();
     if (false !== strpos($url, $dir['baseurl'] . '/')) {
         $file = basename($url);
+
+        $candidates = array($url);
+        $unsized = preg_replace('/-\d+x\d+(\.[a-z0-9]+)$/i', '$1', $url);
+        if ($unsized !== $url) {
+            $candidates[] = $unsized;
+        }
+        foreach ($candidates as $candidate) {
+            $post_id = attachment_url_to_postid($candidate);
+            if ($post_id && italiawp3_attachment_has_file($post_id, $file)) {
+                return $post_id;
+            }
+        }
+
         $query_args = array(
             'post_type' => 'attachment',
             'post_status' => 'inherit',
             'fields' => 'ids',
+            'no_found_rows' => true,
             'meta_query' => array(
                 array(
                     'value' => $file,
@@ -108,10 +141,7 @@ function get_attachment_id($url) {
         $query = new WP_Query($query_args);
         if ($query->have_posts()) {
             foreach ($query->posts as $post_id) {
-                $meta = wp_get_attachment_metadata($post_id);
-                $original_file = basename($meta['file']);
-                $cropped_image_files = wp_list_pluck($meta['sizes'], 'file');
-                if ($original_file === $file || in_array($file, $cropped_image_files)) {
+                if (italiawp3_attachment_has_file($post_id, $file)) {
                     $attachment_id = $post_id;
                     break;
                 }
@@ -119,6 +149,15 @@ function get_attachment_id($url) {
         }
     }
     return $attachment_id;
+}
+
+function italiawp3_attachment_has_file($post_id, $file) {
+    $meta = wp_get_attachment_metadata($post_id);
+    if (empty($meta['file'])) {
+        return false;
+    }
+    $cropped_image_files = !empty($meta['sizes']) ? wp_list_pluck($meta['sizes'], 'file') : array();
+    return basename($meta['file']) === $file || in_array($file, $cropped_image_files);
 }
 
 if (!get_theme_mod('disactive_cornici_immagini')) {

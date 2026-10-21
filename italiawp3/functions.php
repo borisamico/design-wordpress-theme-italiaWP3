@@ -109,8 +109,7 @@ if (!function_exists('italiawp3_theme_setup')) :
         // Add support for editor styles.
         add_theme_support('editor-styles');
 
-        // Enqueue editor styles and fonts.
-        add_editor_style(get_template_directory_uri().'/inc/editor.css');
+        // Enqueue editor fonts.
         add_editor_style(get_template_directory_uri().'/inc/fonts.css');
         
         // Add support for responsive embedded content.
@@ -580,9 +579,7 @@ function italiawp3_register_required_plugins() {
 require get_template_directory() . '/inc/gallery_cpt.php';
 
 function current_url() {
-    $url = "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    $validURL = str_replace("&", "&amp", $url);
-    return $validURL;
+    return esc_url(home_url(add_query_arg(array())));
 }
 
 function is_custom_post_type($post = NULL) {
@@ -650,34 +647,41 @@ function italiawp3_metabox_menu_pt_archive() {
     endif;
 }
 
-add_action('pre_get_posts', 'my_date_search');
+add_filter('request', 'italiawp3_date_search');
 
-function my_date_search() {
-    if (is_search()) {
-        $original_query = get_search_query();
+function italiawp3_date_search($query_vars) {
+    global $wp_locale;
 
-        $months = array(1 => esc_html__('January', 'italiawp3'), 2 => esc_html__('February', 'italiawp3'), 3 => esc_html__('March', 'italiawp3'), 4 => esc_html__('April', 'italiawp3'), 5 => esc_html__('May', 'italiawp3'), 6 => esc_html__('June', 'italiawp3'), 7 => esc_html__('July', 'italiawp3'), 8 => esc_html__('August', 'italiawp3'), 9 => esc_html__('September', 'italiawp3'), 10 => esc_html__('October', 'italiawp3'), 11 => esc_html__('November', 'italiawp3'), 12 => esc_html__('December', 'italiawp3'));
+    if (is_admin() || empty($query_vars['s']) || !is_string($query_vars['s'])) {
+        return $query_vars;
+    }
 
-        foreach ($months as $month => $month_name) {
-            if (stristr($original_query, $month_name)) {
-                $m = $month;
-                preg_match('/(19[0-9][0-9]|20[0-9][0-9])/', $original_query, $year);
-                if ($year)
-                    $y = $year[0];
-                preg_match('/^[0-3]{0,1}[0-9]{1} /', $original_query, $day);
-                if ($day)
-                    $d = $day[0];
-            }
-        }
+    $search = $query_vars['s'];
+    if (!preg_match('/\b(19[0-9]{2}|20[0-9]{2})\b/', $search, $year)) {
+        return $query_vars;
+    }
 
-        if (isset($m) && isset($y)) {
-            $paged = get_query_var('paged') ? get_query_var('paged') : 1;
-            if (!isset($d))
-                $d = "";
-            $new_query = 'year=' . $y . '&monthnum=' . $m . '&day=' . $d . '&paged=' . $paged;
-            query_posts($new_query);
+    $month = 0;
+    $position = false;
+    for ($m = 1; $m <= 12; $m++) {
+        $found = stripos($search, $wp_locale->get_month($m));
+        if ($found !== false && ($position === false || $found < $position)) {
+            $position = $found;
+            $month = $m;
         }
     }
+    if (!$month) {
+        return $query_vars;
+    }
+
+    unset($query_vars['s']);
+    $query_vars['year'] = $year[1];
+    $query_vars['monthnum'] = $month;
+    if (preg_match('/^([0-3]?[0-9]) /', $search, $day)) {
+        $query_vars['day'] = (int) $day[1];
+    }
+
+    return $query_vars;
 }
 
 /**

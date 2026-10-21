@@ -52,10 +52,10 @@ $i = 0; if (have_posts()) :
                         <?php echo '- '.__('No.','italiawp3').' '.$circolare_num.__(' of ','italiawp3').$circolare_anno; ?>
                     </div>
                     
-                    <div class="scheda-testo <?php if($img_url=="") echo 'scheda-testo-nofoto'; ?>">
+                    <div class="scheda-testo scheda-testo-nofoto">
                         
                         <h2>
-                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                            <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                 <?php the_title(); ?>
                             </a>
                         </h2>

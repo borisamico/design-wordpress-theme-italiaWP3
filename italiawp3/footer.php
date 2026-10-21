@@ -50,14 +50,14 @@
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-pa"></use></svg>
                                 <?php echo __('Address','italiawp3'); ?>
                                 <br>
-                                <span><?php echo get_option('dettagli-indirizzo'); ?><br>
-                                <?php echo get_option('dettagli-cap'); ?>, <?php echo get_option('dettagli-citta'); ?></span>
+                                <span><?php echo esc_html(get_option('dettagli-indirizzo')); ?><br>
+                                <?php echo esc_html(get_option('dettagli-cap')); ?>, <?php echo esc_html(get_option('dettagli-citta')); ?></span>
                             </li>
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-telephone"></use></svg>
                                 <?php echo __('Phone','italiawp3'); ?><br>
                                 <a href="tel:+39<?php echo esc_attr(get_option('dettagli-telefono')); ?>" title="<?php echo __('Phone','italiawp3'); ?>">
-                                    (+39) <?php echo get_option('dettagli-telefono'); ?>
+                                    (+39) <?php echo esc_html(get_option('dettagli-telefono')); ?>
                                 </a>
                             </li>
                             <?php if(get_option('dettagli-fax')!=""): ?>
@@ -65,7 +65,7 @@
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-print"></use></svg>
                                 <?php echo __('Fax','italiawp3'); ?><br>
                                 <a href="tel:+39<?php echo esc_attr(get_option('dettagli-fax')); ?>" title="<?php echo __('Fax','italiawp3'); ?>">
-                                    (+39) <?php echo get_option('dettagli-fax'); ?>
+                                    (+39) <?php echo esc_html(get_option('dettagli-fax')); ?>
                                 </a>
                             </li>
                             <?php endif; ?>
@@ -78,20 +78,20 @@
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-check-circle"></use></svg>
                                 <?php echo __('Tax code / VAT number','italiawp3'); ?><br>
-                                <span><?php echo get_option('dettagli-cfpiva'); ?></span>
+                                <span><?php echo esc_html(get_option('dettagli-cfpiva')); ?></span>
                             </li>
                             <?php if(get_option('dettagli-codunivoco')!=""): ?>
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-exchange-circle"></use></svg>
                                 <?php echo __('Unique Code','italiawp3'); ?><br>
-                                <span><?php echo get_option('dettagli-codunivoco'); ?></span>
+                                <span><?php echo esc_html(get_option('dettagli-codunivoco')); ?></span>
                             </li>
                             <?php endif; ?>
                             <?php if(get_option('dettagli-iban')!=""): ?>
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-card"></use></svg>
                                 <?php echo __('IBAN','italiawp3'); ?><br>
-                                <span><?php echo get_option('dettagli-iban'); ?></span>
+                                <span><?php echo esc_html(get_option('dettagli-iban')); ?></span>
                             </li>
                             <?php endif; ?>
                         </ul>
@@ -103,16 +103,16 @@
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-mail"></use></svg>
                                 <?php echo __('PEC','italiawp3'); ?><br>
-                                <a href="mailto:<?php echo get_option('dettagli-pec'); ?>" title="<?php echo __('Certified mail','italiawp3'); ?>">
-                                    <?php echo get_option('dettagli-pec'); ?>
+                                <a href="mailto:<?php echo esc_attr(get_option('dettagli-pec')); ?>" title="<?php echo __('Certified mail','italiawp3'); ?>">
+                                    <?php echo esc_html(get_option('dettagli-pec')); ?>
                                 </a>
                             </li>
                             <?php if(get_option('dettagli-email')!=""): ?>
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-mail"></use></svg>
                                 <?php echo __('Email','italiawp3'); ?><br>
-                                <a href="mailto:<?php echo get_option('dettagli-email'); ?>" title="<?php echo __('Email','italiawp3'); ?>">
-                                    <?php echo get_option('dettagli-email'); ?>
+                                <a href="mailto:<?php echo esc_attr(get_option('dettagli-email')); ?>" title="<?php echo __('Email','italiawp3'); ?>">
+                                    <?php echo esc_html(get_option('dettagli-email')); ?>
                                 </a>
                             </li>
                             <?php endif; ?>
@@ -120,8 +120,8 @@
                             <li>
                                 <svg class="icon" aria-hidden="true" focusable="false"><use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/svg/sprite.svg#it-mail"></use></svg>
                                 <?php echo __('Email','italiawp3'); ?><br>
-                                <a href="mailto:<?php echo get_option('dettagli-email2'); ?>" title="<?php echo __('Email','italiawp3'); ?>">
-                                    <?php echo get_option('dettagli-email2'); ?>
+                                <a href="mailto:<?php echo esc_attr(get_option('dettagli-email2')); ?>" title="<?php echo __('Email','italiawp3'); ?>">
+                                    <?php echo esc_html(get_option('dettagli-email2')); ?>
                                 </a>
                             </li>
                             <?php endif; ?>
@@ -131,94 +131,9 @@
                     <div class="col-12 col-md-6 col-lg-3">
                         <h2><?php echo __('Follow us on','italiawp3'); ?></h2>
                         
-                    <?php if( !( get_option('dettagli-facebook')=="" && get_option('dettagli-twitter')=="" && get_option('dettagli-youtube')=="" && get_option('dettagli-instagram')=="" && get_option('dettagli-linkedin')=="" ) ): ?>
-                        <ul class="list-inline text-left social">
-                        <?php if (get_option('dettagli-facebook') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Facebook"
-                                    href="<?php echo get_option('dettagli-facebook'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-facebook"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Facebook</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-twitter') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Twitter"
-                                    href="<?php echo get_option('dettagli-twitter'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-twitter"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Twitter</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-youtube') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - YouTube"
-                                    href="<?php echo get_option('dettagli-youtube'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-youtube"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> YouTube</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-instagram') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Instagram"
-                                    href="<?php echo get_option('dettagli-instagram'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-instagram"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Instagram</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-telegram') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Telegram"
-                                    href="https://telegram.me/<?php echo get_option('dettagli-telegram'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-telegram"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Telegram</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-whatsapp') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Whatsapp"
-                                    href="tel:+39<?php echo get_option('dettagli-whatsapp'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-whatsapp"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Whatsapp</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        <?php if (get_option('dettagli-linkedin') != ""): ?>
-                            <li class="list-inline-item">
-                                <a  target="_blank" class="social-icon"
-                                    aria-label="<?php echo __('Link to external site','italiawp3'); ?> - LinkedIn"
-                                    href="<?php echo get_option('dettagli-linkedin'); ?>">
-                                    <svg class="icon" aria-hidden="true" focusable="false">
-                                        <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/bootstrap-italia.svg#it-linkedin-square"></use>
-                                    </svg>
-                                    <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> LinkedIn</span>
-                                </a>
-                            </li>
-                        <?php endif; ?>
-                        </ul>
-                    <?php endif; ?>
+                    <?php get_template_part('template-parts/social-links', null, array(
+                        'ul_class' => 'list-inline text-left social',
+                    )); ?>
                     </div>
                 </div>
             </section>
@@ -245,7 +160,7 @@
                 
                 <!-- Per favore, non rimuoverlo! -->
                 <?php $main_theme = wp_get_theme(get_template()); ?>
-                <?php echo __('Graphic theme','italiawp3'); ?> <a target="_blank" rel="noopener noreferrer" href="<?php echo $main_theme->get('ThemeURI'); ?>"><?php echo $main_theme->get('Name'); ?></a> |
+                <?php echo __('Graphic theme','italiawp3'); ?> <a target="_blank" rel="noopener noreferrer" href="<?php echo esc_url($main_theme->get('ThemeURI')); ?>"><?php echo esc_html($main_theme->get('Name')); ?></a> |
                 <?php echo __('Based on the','italiawp3'); ?> <a target="_blank" rel="noopener noreferrer" href="https://italia.github.io/design-comuni-prototipi/"><?php echo __('AgID Prototype for PA sites','italiawp3'); ?></a>
                 <!-- Grazie :) -->
 

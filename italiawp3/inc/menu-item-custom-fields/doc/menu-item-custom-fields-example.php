@@ -48,7 +48,7 @@ class Menu_Item_Custom_Fields_Example {
 		add_filter( 'manage_nav-menus_columns', array( __CLASS__, '_columns' ), 99 );
 
 		self::$fields = array(
-			'data-element' => __( 'Attributo "data-element" per validazione', 'menu-item-data-element' ),
+			'data-element' => __( 'Attributo "data-element" per validazione', 'italiawp3' ),
 		);
 	}
 

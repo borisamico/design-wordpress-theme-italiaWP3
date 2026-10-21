@@ -44,7 +44,8 @@ if(!$last_one_news) {
             'orderby' => 'date',
             'post__in' => $sticky_posts,
             'ignore_sticky_posts' => true,
-            'post_type' => 'post'
+            'post_type' => 'post',
+            'no_found_rows' => true
         );
 
         $query = new WP_Query( $args );
@@ -155,7 +156,8 @@ if(!$last_one_news) {
             'orderby' => 'date',
             'post_type' => 'post',
             'post__not_in' => $sticky_posts_tot,
-            'ignore_sticky_posts' => true
+            'ignore_sticky_posts' => true,
+            'no_found_rows' => true
         );
     }else{
         $args = array (
@@ -168,7 +170,8 @@ if(!$last_one_news) {
     $args = array(
         'posts_per_page' => ($num_articoli+1),
         'orderby' => 'date',
-        'order' => 'DESC'
+        'order' => 'DESC',
+        'no_found_rows' => true
     );
 }
 

@@ -8,7 +8,7 @@
 
 ---
 
-#### [**Guarda la demo**](https://italiawp.borisamico.it/demo3) | [**Scarica il tema**](https://raw.githubusercontent.com/borisamico/design-wordpress-theme-italiaWP3/main/italiawp3.zip) | [**Pagina del tema**](http://italiawp.borisamico.it)
+#### [**Guarda la demo**](https://italiawp.borisamico.it/demo3) | [**Scarica il tema**](https://raw.githubusercontent.com/borisamico/design-wordpress-theme-italiaWP3/main/italiawp3.zip) | [**Pagina del tema**](https://italiawp.borisamico.it)
 
 ---
 
@@ -56,7 +56,7 @@ del _Tema Child_, successivamente configurare il _Tema Child_ lasciando _italiaw
 4. Impostare i dati di contatto e i dettagli nella sezione _"Dettagli"_ (qui si imposta anche, facoltativamente, il _Measurement ID_ di Google Analytics 4)
 5. Attivare le sezioni della "Home" in _"Aspetto" > "Personalizza"_ > _"Sito & Homepage"_
 6. In _"Aspetto" > "Menu"_ creare un nuovo Menu ed inserirlo nella posizione "Menu Principale"
-7. [Facoltativo] Installare (e poi attivare) i Plugins consigliati in _"Aspetto" > "Plugin richiesti"_
+7. [Facoltativo] Installare (e poi attivare) i plugin consigliati in _"Aspetto" > "Installa plugin"_ (la voce compare finché i plugin consigliati non sono installati)
 
 ---
 
@@ -66,8 +66,9 @@ del _Tema Child_, successivamente configurare il _Tema Child_ lasciando _italiaw
 * **Responsive**: si adatta ad _ogni tipo di dispositivo_ (desktop, tablet e mobile) mantenendo le funzionalità
 * Pagina **"ACCESSIBILITÀ"** nel backend: controlla il markup delle pagine pubbliche, misura i contrasti reali sul sito renderizzato, scandisce contenuti, immagini e PDF, e tiene il registro delle verifiche manuali con esito e data — il materiale su cui si fonda la _dichiarazione di accessibilità_ da pubblicare su [form.agid.gov.it](https://form.agid.gov.it)
     * I controlli automatici coprono circa **un terzo** dei criteri: navigazione da tastiera e screen reader non sono automatizzabili da nessuno strumento e restano una verifica umana. Il pannello lo dichiara e non mostra mai "tutto verde"
-* Pagina **"DETTAGLI"** nel backend: è possibile inserire e modificare facilmente le _informazioni di contatto_, i _link dei profili social_, il numero di _ultimi articoli_ in homepage, gli _ID delle pagine_ Privacy, Note legali e Contatti, e il _Measurement ID_ di **Google Analytics 4**
+* Pagina **"DETTAGLI"** nel backend: è possibile inserire e modificare facilmente le _informazioni di contatto_, i _link dei profili social_ (Facebook, Twitter, YouTube, Instagram, LinkedIn, Telegram e WhatsApp), il numero di _ultimi articoli_ in homepage, gli _ID delle pagine_ Privacy, Note legali e Contatti, il link alla _dichiarazione di accessibilità_ e il _Measurement ID_ di **Google Analytics 4**
     * Il campo Analytics è **facoltativo**: se lasciato vuoto non viene caricato alcuno script di tracciamento e non parte alcuna richiesta verso terze parti
+    * Se mancano i riferimenti obbligatori per un sito della PA (dichiarazione di accessibilità, informativa privacy, note legali), un **avviso in bacheca** li elenca finché non vengono compilati
 * **11 posizioni del menu**: _menu principale_, _menu in alto_ e 9 per i _box servizi_ (divisi in 3 tipologie)
     * Nei menu **Box Servizi** è possibile inserire delle immagini utilizzando i _Link personalizzati_ e inserendo direttamente il tag html **< img src="URL" >** nel _Testo del link_
 * **5 aree widget**: _Footer Colonne_, _Sidebar Pagine_ (disattivabile scegliendo l'apposito _Template_), _Sidebar Articoli_, _Sezione Notifica_ e _Sezione Credits_
@@ -110,29 +111,95 @@ Il primo va eseguito dopo ogni modifica ai CSS: un commento malformato disattiva
 La procedura per aggiornare Bootstrap Italia e quella di rilascio sono in
 [`CONTRIBUTING.md`](CONTRIBUTING.md).
 
+### Traduzioni
+
+La traduzione italiana è in `languages/it_IT.po` (sorgente) e `languages/it_IT.mo`
+(compilato, quello che WordPress legge). Il text domain è `italiawp3`.
+
+Chi aggiorna le traduzioni con **Poedit** ("Aggiorna dal sorgente") deve verificare che
+in _Catalogo > Proprietà > Parole chiave sorgenti_ ci siano **tutte** le funzioni di
+traduzione di WordPress, non solo `__` e `_e`:
+
+```
+__ · _e · _n:1,2 · _x:1,2c · _ex:1,2c · _nx:4c,1,2
+esc_attr__ · esc_attr_e · esc_attr_x:1,2c
+esc_html__ · esc_html_e · esc_html_x:1,2c
+_n_noop:1,2 · _nx_noop:3c,1,2
+```
+
+Il file `.po` del tema le dichiara già. Se però ne manca una, Poedit non trova le stringhe
+scritte con quella funzione, le marca come obsolete (`#~`) e sul sito ricompaiono in
+inglese. Prima della 1.0.1 era successo con il form dei commenti, il breadcrumb della
+pagina 404 e i testi per screen reader. Dopo ogni aggiornamento conviene controllare che
+nessuna voce obsoleta sia ancora usata nel codice.
+
+In alternativa il catalogo si può rigenerare con WP-CLI, che riconosce già tutte le
+funzioni:
+
+```bash
+wp i18n make-pot . languages/italiawp3.pot --domain=italiawp3 --exclude="__*,inc/tgm-plugin-activation,bin,docs,static"
+```
+
 ---
 
-## Plugin Wordpress:
+## Plugin WordPress:
 
-I seguenti plugins WordPress, già compresi o consigliati, sono già gestiti graficamente nel tema.
+I seguenti plugin WordPress sono già gestiti graficamente nel tema.
 
-**Importanti:**
+**Per la Pubblica Amministrazione:**
 
-* [**Classic Editor**](https://it.wordpress.org/plugins/classic-editor/) ripristina l'*Editor Classico* di WordPress
-
-**Compresi nel tema:**
-
-* [**TGM Example Plugin**](http://tgmpluginactivation.com) consente l'inclusione di Plugin nel tema
+* [**Gestione Circolari**](https://it.wordpress.org/plugins/gestione-circolari/) pubblica le circolari dell'ente: il tema ne gestisce l'archivio, la pagina della singola circolare e la sezione _"Ultime circolari"_ in homepage (da attivare in _"Aspetto" > "Personalizza" > "Sito & Homepage"_)
+* [**Amministrazione Trasparente**](https://it.wordpress.org/plugins/amministrazione-trasparente/) organizza la sezione obbligatoria _Amministrazione Trasparente_
+* [**Albo Pretorio On line**](https://it.wordpress.org/plugins/albo-pretorio-on-line/) pubblica gli atti dell'_Albo Pretorio_
+* [**Polylang**](https://it.wordpress.org/plugins/polylang/) rende il sito multilingua; con la traduzione dei media attiva, le cornici delle immagini mostrano titolo e didascalia nella lingua della pagina
 
 **Consigliati:**
 
-* [**Attachments**](https://it.wordpress.org/plugins/attachments/) consente il caricamento di allegati in Pagine e Articoli
+* [**Attachments**](https://it.wordpress.org/plugins/attachments/) consente il caricamento di allegati in Pagine e Articoli (proposto all'attivazione del tema)
+
+**Facoltativi:**
+
+* [**Classic Editor**](https://it.wordpress.org/plugins/classic-editor/) ripristina l'*Editor Classico* di WordPress, per chi preferisce non usare l'editor a blocchi
+
+---
+
+## Changelog:
+
+### 1.0.1 — 21 ottobre 2026
+
+**Sicurezza**
+* I link dei profili social e i dati della pagina _"Dettagli"_ stampati in intestazione e footer vengono ora sempre filtrati (`esc_url()`, `esc_attr()`, `esc_html()`): un valore malevolo salvato in un campo non può più eseguire codice nelle pagine del sito
+
+**Correzioni**
+* **Ricerca per data**: cercando ad esempio _"Settembre 2018"_ o _"12 Settembre 2018"_ si apre l'archivio di quel mese o giorno. Sui siti in italiano non aveva mai funzionato
+* **Traduzioni**: tornano in italiano le etichette del form commenti, il breadcrumb della pagina 404, l'istruzione della mappa e i testi letti dagli screen reader
+* **WhatsApp**: il link apre la chat WhatsApp (`https://wa.me/…`) e non più il telefono
+* I profili social compaiono anche quando sono impostati solo Telegram o WhatsApp
+* Le cornici delle immagini mostrano titolo e didascalia corretti anche con due file omonimi caricati in mesi diversi e, con Polylang, nelle pagine in altra lingua (prima compariva il titolo dell'articolo)
+* La colonna _"Anteprima"_ nell'elenco delle Pagine in bacheca mostra l'immagine in evidenza
+* Eliminati warning e avvisi PHP nelle sezioni delle circolari e nel menu (su PHP 8.1 e successivi)
+
+**Prestazioni**
+* Le immagini dei contenuti non eseguono più una scansione completa della tabella `wp_postmeta` per ciascuna immagine
+* Ricerca per data con una sola query invece di due
+* Le query delle sezioni in homepage e della navigazione fra articoli non calcolano più totali inutilizzati
+
+**Requisiti**
+* PHP minimo portato a **8.0**
+
+**Per chi usa un tema child**
+* Rimosse le funzioni `my_date_search()` (sostituita da `italiawp3_date_search()`), `italiawp3_sanitize_file()` e `brb_add_editor_styles()`: un tema child che le richiama va aggiornato
+* Rimossi i fogli vuoti `inc/admin.css` e `inc/editor.css` e il file `static/js/i18n/datepicker-it.min.js`, non più usato
+
+### 1.0.0
+
+* Prima versione di ItaliaWP3
 
 ---
 
 ## Licenza:
 
-Copyright (c) 2018-2026 & moral rights [**Boris Amico**](http://borisamico.it).
+Copyright (c) 2018-2026 & moral rights [**Boris Amico**](https://borisamico.it).
 
 Il testo integrale della licenza è nel file [`LICENSE.md`](LICENSE.md).
 
@@ -158,6 +225,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 * Plugin jQuery **Magnific Popup** [clicca qui](https://github.com/dimsemenov/Magnific-Popup)
 * Plugin jQuery **Owl Carousel 2** [clicca qui](https://github.com/OwlCarousel2/OwlCarousel2/blob/develop/LICENSE)
 * **Leaflet** [clicca qui](https://github.com/Leaflet/Leaflet/blob/main/LICENSE)
-* **Theme Update Checker** [clicca qui](https://github.com/YahnisElsts/wp-update-server)
-* **TGM Plugin Activation** [clicca qui](http://tgmpluginactivation.com)
+* **Theme Update Checker** [clicca qui](https://w-shadow.com/)
+* **TGM Plugin Activation** [clicca qui](https://github.com/TGMPA/TGM-Plugin-Activation)
 * Plugin WordPress **Attachments** [clicca qui](https://github.com/jchristopher/attachments)

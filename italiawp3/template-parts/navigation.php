@@ -19,7 +19,7 @@
                                                             </svg>
                                                             <span class="sr-only">'.__('Previous page','italiawp3').'</span>');
                         } else {
-                            $first = new WP_Query('posts_per_page=1&order=DESC');
+                            $first = new WP_Query('posts_per_page=1&order=DESC&no_found_rows=1');
                             $first->the_post();
                             echo '<a href="' . get_permalink() . '"><svg class="icon" aria-hidden="true" focusable="false">
                                                                 <use xlink:href="' . esc_url( get_template_directory_uri() ) . '/static/img/bootstrap-italia.svg#it-chevron-left"></use>
@@ -37,7 +37,7 @@
                                                         </svg>
                                                         <span class="sr-only">'.__('Next page','italiawp3').'</span>');
                         } else {
-                            $last = new WP_Query('posts_per_page=1&order=ASC');
+                            $last = new WP_Query('posts_per_page=1&order=ASC&no_found_rows=1');
                             $last->the_post();
                             echo '<a href="' . get_permalink() . '"><svg class="icon" aria-hidden="true" focusable="false">
                                                             <use xlink:href="' . esc_url( get_template_directory_uri() ) . '/static/img/bootstrap-italia.svg#it-chevron-right"></use>

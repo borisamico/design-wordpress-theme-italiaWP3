@@ -5,19 +5,19 @@
             <div class="col-lg-12 col-md-12 col-sm-12 entesup">
                 
             <?php if ((get_option('dettagli-nome-ammin-afferente') != "") || (get_option('dettagli-logo-ammin-afferente') != "")) { ?>
-                <a  aria-label="<?php echo __('Link to external site', 'italiawp3'); ?> - <?php echo get_option('dettagli-nome-ammin-afferente'); ?> - <?php echo __('new window', 'italiawp3'); ?>"
-                    title="<?php echo get_option('dettagli-nome-ammin-afferente'); ?>"
-                    href="<?php echo get_option('dettagli-url-ammin-afferente'); ?>"
+                <a  aria-label="<?php echo __('Link to external site', 'italiawp3'); ?> - <?php echo esc_attr(get_option('dettagli-nome-ammin-afferente')); ?> - <?php echo __('new window', 'italiawp3'); ?>"
+                    title="<?php echo esc_attr(get_option('dettagli-nome-ammin-afferente')); ?>"
+                    href="<?php echo esc_url(get_option('dettagli-url-ammin-afferente')); ?>"
                     target="_blank">
 
                     <?php if (get_option('dettagli-logo-ammin-afferente') != "") { ?>
                         <?php if (get_option('dettagli-logo-ammin-afferente-mobile') != "" && wp_is_mobile()) : ?>
-                            <img src="<?php echo get_option('dettagli-logo-ammin-afferente-mobile'); ?>" alt="<?php echo get_option('dettagli-nome-ammin-afferente'); ?>" />
+                            <img src="<?php echo esc_url(get_option('dettagli-logo-ammin-afferente-mobile')); ?>" alt="<?php echo esc_attr(get_option('dettagli-nome-ammin-afferente')); ?>" />
                         <?php else : ?>
-                            <img src="<?php echo get_option('dettagli-logo-ammin-afferente'); ?>" alt="<?php echo get_option('dettagli-nome-ammin-afferente'); ?>" />
+                            <img src="<?php echo esc_url(get_option('dettagli-logo-ammin-afferente')); ?>" alt="<?php echo esc_attr(get_option('dettagli-nome-ammin-afferente')); ?>" />
                         <?php endif; ?>
                     <?php } else { ?>
-                        <?php echo get_option('dettagli-nome-ammin-afferente'); ?>
+                        <?php echo esc_html(get_option('dettagli-nome-ammin-afferente')); ?>
                     <?php } ?>
                 </a>
             <?php } ?>
@@ -32,14 +32,14 @@
                             'menu_id' => 'menu-alto',
                             'menu_class' => ''
                         );
-                        echo strip_tags(wp_nav_menu($menu)); ?>
+                        wp_nav_menu($menu); ?>
                     </div>
                     <?php } ?>
                     
                     <!-- accedi -->
                     <?php if (get_option('dettagli-url-accedi') != "") { ?>
                     <div class="accedi float-left text-right">
-                        <a class="btn btn-default btn-accedi" href="<?php echo get_option('dettagli-url-accedi'); ?>">
+                        <a class="btn btn-default btn-accedi" href="<?php echo esc_url(get_option('dettagli-url-accedi')); ?>">
                             <svg class="icon" aria-hidden="true" focusable="false">
                                 <use xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-account_circle"></use>
                             </svg>
@@ -84,7 +84,7 @@
                             'menu_class' => 'nav navmenu',
                             'items_wrap' => '<ul id="%1$s" class="%2$s" data-element="menu">%3$s</ul>',
                         );
-                        echo strip_tags(wp_nav_menu($menu));
+                        wp_nav_menu($menu);
                     }
              ?>
         
@@ -94,96 +94,12 @@
         </div>
         <!-- pulsante ricerca mobile -->
 
-        <ul class="list-inline socialmobile">
-            <?php if (!( get_option('dettagli-facebook') == "" && get_option('dettagli-twitter') == "" && get_option('dettagli-youtube') == "" && get_option('dettagli-instagram') == "" && get_option('dettagli-linkedin') == "" )): ?>
-
-                <li class="small"><?php echo __('Follow us on','italiawp3'); ?></li>
-                    <?php if (get_option('dettagli-facebook') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Facebook"
-                                href="<?php echo get_option('dettagli-facebook'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-facebook"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Facebook</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-twitter') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Twitter"
-                                href="<?php echo get_option('dettagli-twitter'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-twitter"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Twitter</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-youtube') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - YouTube"
-                                href="<?php echo get_option('dettagli-youtube'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-youtube"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> YouTube</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-instagram') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Instagram"
-                                href="<?php echo get_option('dettagli-instagram'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-instagram"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Instagram</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-telegram') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Telegram"
-                                href="https://telegram.me/<?php echo get_option('dettagli-telegram'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-telegram"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Telegram</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-whatsapp') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Whatsapp"
-                                href="tel:+39<?php echo get_option('dettagli-whatsapp'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-whatsapp"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Whatsapp</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (get_option('dettagli-linkedin') != ""): ?>
-                        <li>
-                            <a  target="_blank" class="social-icon"
-                                aria-label="<?php echo __('Link to external site','italiawp3'); ?> - LinkedIn"
-                                href="<?php echo get_option('dettagli-linkedin'); ?>">
-                                <svg class="icon" aria-hidden="true" focusable="false">
-                                    <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/bootstrap-italia.svg#it-linkedin-square"></use>
-                                </svg>
-                                <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> LinkedIn</span>
-                            </a>
-                        </li>
-                    <?php endif; ?>
-            <?php endif; ?>
-        </ul>
+        <?php get_template_part('template-parts/social-links', null, array(
+            'ul_class'    => 'list-inline socialmobile',
+            'li_class'    => '',
+            'always_wrap' => true,
+            'label'       => true,
+        )); ?>
     </div>
 </nav>
 <!-- Fine Menu Mobile -->
@@ -247,96 +163,9 @@
 
         <div class="header-social col-xl-3 col-lg-3 d-none d-lg-block d-md-none pull-right text-right">
             <!-- Inizio Social-->
-            <?php if (!( get_option('dettagli-facebook') == "" && get_option('dettagli-twitter') == "" && get_option('dettagli-youtube') == "" && get_option('dettagli-instagram') == "" && get_option('dettagli-linkedin') == "" )): ?>
-            <ul class="list-inline text-right social">
-                
-                <?php if (get_option('dettagli-facebook') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Facebook"
-                            href="<?php echo get_option('dettagli-facebook'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-facebook"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Facebook</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-twitter') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Twitter"
-                            href="<?php echo get_option('dettagli-twitter'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-twitter"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Twitter</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-youtube') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - YouTube"
-                            href="<?php echo get_option('dettagli-youtube'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-youtube"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> YouTube</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-instagram') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Instagram"
-                            href="<?php echo get_option('dettagli-instagram'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-instagram"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Instagram</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-telegram') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Telegram"
-                            href="https://telegram.me/<?php echo get_option('dettagli-telegram'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-telegram"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Telegram</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-whatsapp') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - Whatsapp"
-                            href="tel:+39<?php echo get_option('dettagli-whatsapp'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/ponmetroca.svg#ca-whatsapp"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> Whatsapp</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                <?php if (get_option('dettagli-linkedin') != ""): ?>
-                    <li class="list-inline-item">
-                        <a  target="_blank" class="social-icon"
-                            aria-label="<?php echo __('Link to external site','italiawp3'); ?> - LinkedIn"
-                            href="<?php echo get_option('dettagli-linkedin'); ?>">
-                            <svg class="icon" aria-hidden="true" focusable="false">
-                                <use  xlink:href="<?php echo esc_url( get_template_directory_uri() ); ?>/static/img/bootstrap-italia.svg#it-linkedin-square"></use>
-                            </svg>
-                            <span class="hidden"><?php echo __('Follow us on','italiawp3'); ?> LinkedIn</span>
-                        </a>
-                    </li>
-                <?php endif; ?>
-                
-            </ul>
-            <?php endif; ?>
+            <?php get_template_part('template-parts/social-links', null, array(
+                'ul_class' => 'list-inline text-right social',
+            )); ?>
             <!-- Fine Social-->
         </div>
 

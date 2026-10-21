@@ -90,13 +90,12 @@ function italiawp3_add_post_thumbnail_column($cols) {
     return $cols;
 }
 
+add_action('manage_pages_custom_column', 'italiawp3_display_post_thumbnail_column', 10, 2);
+
 function italiawp3_display_post_thumbnail_column($col, $id) {
     switch ($col) {
         case 'italiawp3_post_thumb':
-            if (function_exists('the_post_thumbnail'))
-                echo the_post_thumbnail('gallery-preview');
-            else
-                echo 'Non supportata da questo tema';
+            the_post_thumbnail('gallery-preview');
             break;
     }
 }

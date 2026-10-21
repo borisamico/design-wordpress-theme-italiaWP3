@@ -23,6 +23,7 @@
     $args = array(
         'posts_per_page' => 6,
         'post_type' => 'circolari',
+        'no_found_rows' => true,
     );
 
 $the_query = new WP_Query($args);
@@ -49,10 +50,10 @@ if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->t
                             <?php echo '- '.__('No.','italiawp3').' '.$circolare_num.__(' of ','italiawp3').$circolare_anno; ?>
                         </div>
 
-                        <div class="scheda-testo <?php if($img_url=="") echo 'scheda-testo-nofoto'; ?>">
+                        <div class="scheda-testo scheda-testo-nofoto">
                         
                             <h3>
-                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+                                <a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
                                     <?php the_title(); ?>
                                 </a>
                             </h3>
